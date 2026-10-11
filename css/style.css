@@ -10,7 +10,7 @@ html {
 body {
     font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", sans-serif;
     line-height: 1.7;
-    color: black;
+    color: green;
     /* 💡ヘッダーの縦幅を縮めたため、余白も70pxに少し減らしました */
     padding-top: 70px; 
 }
