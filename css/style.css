@@ -49,7 +49,7 @@ img {
 .btn {
     display: inline-block;
     font-size: 1.5rem;
-    background-color: #3535bd;
+    background-color: #C0A313;
     color: #fff;
     border-radius: 8px;
     padding: .75rem 1.5rem;
@@ -57,7 +57,7 @@ img {
     transition: .5s;
 }
 .btn:hover {
-    background-color: #35bdb4;
+    background-color: #C8A978;
 }
 
 /* =========================================
