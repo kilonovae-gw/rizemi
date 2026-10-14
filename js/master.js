@@ -38,3 +38,17 @@ function setupAccordion(headerClass, itemClass, contentClass) {
 
 setupAccordion('.accordion-header', '.accordion-item', '.accordion-content');
 setupAccordion('.accordion-header-sp', '.accordion-item-sp', '.accordion-content-sp');
+
+// スライドショーの初期化（スワイプ・ドラッグ対応）
+$(document).ready(function(){
+  $('.your-class').slick({
+    swipe: true,         // タッチスワイプを有効化
+    swipeToSlide: true,  // 指で動かした分だけ滑らかにスライド
+    touchMove: true,     // タッチによるスクロール移動を許可
+    draggable: true,     // PCのマウスドラッグ操作も許可
+    autoplay: true,      // 自動再生（必要に応じて）
+    autoplaySpeed: 3000, // スライド切り替え速度（ミリ秒）
+    arrows: false,       // 矢印ボタンの表示/非表示
+    dots: true           // 下部のドットナビゲーション（必要に応じて）
+  });
+});
