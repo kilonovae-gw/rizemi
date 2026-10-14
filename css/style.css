@@ -690,7 +690,6 @@ body.r6-sp {
 
 /* スライドショー */
 .your-class .slick-slide {
-  margin-top: 2rem
   height: 250px;
   display: flex;
   align-items: center;
