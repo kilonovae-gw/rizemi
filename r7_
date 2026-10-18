@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+    <title>りゼミ</title>
+    <meta name="description" content="高専生・大学生・大学院生のための自主ゼミ合宿">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta property="og:url" content="https://rizemi-official.github.io/r6_sp.html">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="りゼミ6th特設ページ">
+        <meta property="og:description" content="りゼミ6th開催！">
+        <meta property="og:image" content="https://rizemi-official.github.io/images/りゼミアイコン.png">
+        
+        <meta property="og:site_name" content="りゼミ">
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "りゼミ",
+          "url": "https://rizemi-official.github.io/"
+        }
+        </script>
+        
+    <link rel="icon" type="image/png" href="images/りゼミアイコン.png">
+
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./slick/slick.css">
+        <link rel="stylesheet" href="./slick/slick-theme.css">
+        <link rel="stylesheet" href="./css/style.css?v=29">
+    </head>
+    
+<body class="r6-sp">
+    <a class="pagetop" href="#"><div class="pagetop__arrow"></div></a>
+
+    <header class="page-header-sp wrapper">
+        <h1 class="align-center head-sp">
+            <a href="index.html">
+                <img class="logo" src="images/りゼミアイコン.png" alt="りゼミ ホーム">
+                <div class="logo-text">
+                    <span class="logo-top">高専生・大学生・大学院生のための<span class="about-text">自主ゼミ合宿</span></span>
+                    <span class="logo-btm">りゼミ</span>
+                </div>
+            </a>
+            <div class="responsive_btn">
+                <div class="menu_line"></div>
+                <div class="menu_line"></div>
+                <div class="menu_line"></div>
+            </div>
+        </h1>
+        <nav>
+            <ul class="main-nav-sp kaisei-opti-regular">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="detail.html">りゼミとは</a></li>
+                <li><a href="history.html">りゼミの歴史</a></li>
+                <div class="main-sns">
+                    <a class="main-sns-link" href="https://x.com/rizemi_official"><img src="images/無題6_20251107002208.png" alt="公式X"></a>
+                    <a class="main-sns-link" href="https://www.instagram.com/rizemi_official/"><img src="images/Instagram_logo_2022.svg.webp" alt="公式Instagram"></a>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-poster-single">
+        <img src="images/6th/rizemi6.jpg" alt="りゼミ6th メインポスター">
+    </div>
+
+    <div class="top-sp">
+        <a href="#detail-sp">INFO</a>
+        <a href="#zemi-sp">ゼミ班</a>
+        <a href="#event-sp">EVENT</a>
+    </div>
+
+    <table class="detail-sp" id="detail-sp">
+        <caption>INFORMATION</caption>
+        <tbody>
+            <tr>
+                <th>開催日時</th>
+                <td>2026/9/13(日)～9/16(水)</td>
+            </tr>
+            <tr>
+                <th>開催場所</th>
+                <td>国立中央青少年交流の家<div class="about-text"> <a href="https://fujinosato.niye.go.jp/" target="_blank" rel="noopener noreferrer">(施設のホームページはこちら)</a></div></td>
+            </tr>
+            <tr>
+                <th>集合場所</th>
+                <td>JR三島駅（みしまえき）</td>
+            </tr>   
+            <tr>
+                <th>参加費</th>
+                <td>14,000円前後<div class="about-text">(オンライン参加：0円)</div></td>
+            </tr>
+            <tr>
+                <th>注意事項</th>
+                <td>合宿当日に18歳未満の方は参加できません</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="zemi-sp">
+        <div class="zemi-title-wrap" style="position: relative; max-width: 800px; width: 90%; margin: 0 auto;">
+            <h2 class="zemi-title-sp" style="width: 100%; margin: 0;">ゼミ班</h2>
+        </div>
+        
+        <section class="zemi-sp">
+            <div style="padding: 1rem 0; text-align: center;">
+                <p style="font-size: 1rem; line-height: 2; color: #cecece; margin-bottom: 1.5rem;">
+                    希望調査をもとに、6thのゼミ班は以下に決定しました！<br>
+                    各ゼミをタップすると詳細が表示されます。<br>
+                    <strong style="color: #ccff00; font-size: 1.1rem; display: block; margin-top: 1rem; background: rgba(145, 184, 37, 0.15); border: 2px dashed #91b825; padding: 0.8rem; border-radius: 8px;">
+                        本募集は7月6日（月）23:59に締め切りました。<br>
+                        ご回答いただいた皆様、ありがとうございました！
+                    </strong>
+                </p>
+            </div>
+
+            <div class="zemi-grid-container" style="max-width: 800px; margin: 0 auto; padding: 0 1rem; display: grid; gap: 1rem;">
+                
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        計算論的精神医学
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            「心」という複雑なシステムを数式や情報理論を使って解き明かすことを目指します。物理や情報科学の数理モデルを駆使し，精神疾患の仕組み（脳の計算メカニズムの破綻など）の解明に挑む，非常に刺激的で未開拓な分野です。
+<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/計算.jpg" alt="扱う本の例1">
+                            
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        量子情報
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            量子力学では状態の重ね合わせや測定の効果，量子もつれといった古典力学では奇妙だと思われることが起こります。これらを「不思議な現象だ」と理解を留めるのではなく，計算や通信・暗号，物理法則そのものの理解に使うのが量子情報です。<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/sgc量子情報.jpg" alt="扱う本の例1">
+                            <img src="images/6th/量子情報科学.jpg" alt="扱う本の例2">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        相転移・臨界現象とくりこみ群
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            物性物理では強磁性相転移や超伝導相転移など、さまざまな相転移現象を扱います。それらを普遍的に説明するランダウ理論やスケーリング理論，およびくりこみ群について学べる，物性物理における最重要分野の１つです！
+<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/繰り込み群.jpg" alt="扱う本の例1">
+                            
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        統計力学
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            統計力学はミクロな粒子の集団からマクロな熱力学的性質がどう現れるかを説明する分野です。個々の粒子は単純に動いていても膨大な数が集まると相転移や臨界現象のような全く新しい振る舞いが現れます。物性物理，化学，情報，生命現象にまでつながるかなり射程の広い分野です。<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/tasaki.jpg" alt="扱う本の例1">
+                            <img src="images/6th/simizu.jpg" alt="扱う本の例2">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        解析力学
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                           古典力学の主張を最も統一的な記法であるラグランジアンに落とし込む分野です。その内容は，その後対称性と保存則，量子力学，場の理論，統計力学へ直結するものであり，現代物理学の共通言語を成しています。 <br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/masukawa.jpg" alt="扱う本の例1">
+                            <img src="images/6th/hatiware.jpg" alt="扱う本の例2">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        光化学
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            「分子光化学の原理」(丸善出版)という本で有機分子系の光化学について学びます。光の吸収・発光に関わる諸過程の定性的解釈や，光吸収で起きる様々な反応を含む光物理過程について追う予定です。<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/hikari.jpeg" alt="扱う本の例1">
+                           
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        熱力学
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            マクロな系を支配する原理として平衡熱力学を学びます。どの本を取り扱うかは未定ですが，基礎的なところから丁寧に追いたいと考えています。そのため，前提知識は特にありません。初学者の方も大歓迎です！<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/tasaki0.jpg" alt="扱う本の例1">
+                            <img src="images/6th/simizu0.jpg" alt="扱う本の例2">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        非平衡統計力学
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            平衡状態で確立された統計力学を、非平衡状態でも扱えないかと拡張されたのが非平衡統計力学です。いまだ完成された理論はないものの，確率過程や情報理論の手法を用いた非平衡系の記述について学ぶことができます。
+<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/沙川非平衡統計力学.jpg" alt="扱う本の例1">
+                            <img src="images/6th/SGC非平衡統計.jpg" alt="扱う本の例2">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        数理論理学
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            数学において証明された命題は「正しい」として扱われるが，逆に正しい命題はすべて「証明できる」のであろうか？証明と論理を扱い，数学を批判的にとらえるのが数理論理学です。1つの帰結である不完全性定理の理解を目指します。<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/tanaka.jpg" alt="扱う本の例1">
+                            <img src="images/6th/kada.jpg" alt="扱う本の例2">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        集合と位相
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            数学で扱う対象を厳密に説明するものが集合で，集合に「開集合」の概念を導入し，連続性や収束について扱うのが位相空間論です。現代数学の基礎を構築し，解析学や幾何学の土台となる分野ですが，位相空間自体の面白さをぜひ味わいましょう！<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/matusaka.jpg" alt="扱う本の例1">
+                            <img src="images/6th/utida.jpg" alt="扱う本の例2">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        粗幾何学
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            粗幾何学は空間の局所的な構造ではなく，大きなスケールで見た時の幾何学的性質を考える分野です。応用先は広く，解析する手段も様々なものを用いることができる注目の分野ですね！<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/sokika.jpg" alt="扱う本の例1">
+                            
+                        </div>
+                    </div>
+                </details>
+
+                <details class="zemi-card-sp zemi-details" style="background: rgba(255,255,255,0.05); border: 2px solid #91b825; border-radius: 8px; padding: 1.2rem; box-sizing: border-box;">
+                    <summary style="margin: 0; font-size: 1.2rem; color: #fff; font-weight: bold;">
+                        ベトナム語
+                        <span class="toggle-icon">▼</span>
+                    </summary>
+                    <div style="margin-top: 1rem; border-top: 1px dashed #555; padding-top: 1rem;">
+                        <p style="margin: 0; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            ベトナム語はベトナムの公用語で，話者数は約9000万人と言われています。音の種類や声調が豊かで，歌のように喋る言語とも形容されます。<br><br>
+                            扱う本の例：
+                        </p>
+                        <div class="book-images">
+                            <img src="images/6th/ベトナム.jpg" alt="扱う本の例1">
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+            
+        </section>
+    </div>
+
+    <div class="speace-sp" id="event-sp">
+        <h2 class="zemi-title-sp">EVENT</h2>
+        <section class="event-sp">
+            <div style="text-align: center; padding: 2rem 0;">
+                <p style="font-size: 1rem; line-height: 2; color: #cecece; margin-bottom: 1rem;">6thでは，<strong>野外炊事</strong>を行います！</p>
+                
+                <img src="images/2nd/2nd_2.jpg" alt="野外炊事の様子" style="width: 90%; max-width: 500px; border-radius: 8px; margin-bottom: 0.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <p style="color: #999; font-size: 0.8rem; margin-top: 0; margin-bottom: 1.5rem;">野外炊事の様子（りゼミ2nd）</p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="page-footer-sp kaisei-opti-regular">
+        <h3 class="foot-title">INFORMATION</h3>
+        <table class="info">
+            <tr>
+                <th><a class="sns" href="https://x.com/rizemi_official">公式X<img src="images/無題6_20251107002208.png" alt="X"></a></th>
+            </tr>
+            <tr>
+                <th><a class="sns" href="https://www.instagram.com/rizemi_official/">公式Instagram<img src="images/Instagram_logo_2022.svg.webp" alt="Instagram"></a></th>
+            </tr>
+        </table>
+        <div class="copyright" style="text-align: center; margin-top: 1rem; padding-bottom: 1rem;">
+            <small>&copy; 2025 りゼミ</small>
+        </div>
+    </footer>
+
+    <script src="js/master.js"></script> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.your-class').slick({
+                dots: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+</body>
+</html>
