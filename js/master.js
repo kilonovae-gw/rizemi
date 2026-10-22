@@ -239,3 +239,204 @@ function setupAccordion(headerClass, itemClass, contentClass) {
 setupAccordion('.accordion-header', '.accordion-item', '.accordion-content');
 setupAccordion('.accordion-header-sp', '.accordion-item-sp', '.accordion-content-sp');
 
+/* =========================================================
+   新システム（提案＆希望選択フォーム）の処理
+========================================================= */
+let kibou1 = "";
+let kibou2 = "";
+
+// 💡 追加：自動連動用のフラグ変数
+let isKibou1Proposal = false;
+let isKibou2Proposal = false;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const inputBunya = document.getElementById("input-bunya");
+  if (inputBunya) {
+    inputBunya.addEventListener("input", updateProposalButton);
+  }
+
+  // 💡 HTML側の onclick ではなく、JS側で「自分が提案したフラグ」付きのクリック処理を設定する
+  const btnMyProposal = document.getElementById("btn-my-proposal");
+  if (btnMyProposal) {
+    btnMyProposal.removeAttribute("onclick");
+    btnMyProposal.addEventListener("click", () => {
+      const val = document.getElementById("input-bunya").value.trim();
+      selectField(val, true); // true = 自分が提案した分野であることを示す
+    });
+  }
+
+  // 必須項目のリアルタイム監視設定
+  const requiredIds = ["input-kyomi", "input-x", "input-route", "input-route-other"];
+  requiredIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("change", checkRequiredFields);
+      el.addEventListener("input", checkRequiredFields);
+    }
+  });
+
+  // 初回起動時にボタンをグレーアウト状態にしておく
+  checkRequiredFields();
+});
+
+// 必須項目がすべて埋まっているか判定する関数
+function checkRequiredFields() {
+  const kyomi = document.getElementById("input-kyomi") ? document.getElementById("input-kyomi").value.trim() : "";
+  const xSend = document.getElementById("input-x") ? document.getElementById("input-x").value.trim() : "";
+  const route = document.getElementById("input-route") ? document.getElementById("input-route").value.trim() : "";
+  
+  let isValid = true;
+  
+  // 未入力の項目があれば false（不可）にする
+  if (kyomi === "") isValid = false;
+  if (xSend === "") isValid = false;
+  if (route === "") isValid = false;
+
+  // もし「その他」を選んでいるのに、その他の詳細欄が空っぽなら false
+  if (route === "その他") {
+      const routeOther = document.getElementById("input-route-other") ? document.getElementById("input-route-other").value.trim() : "";
+      if (routeOther === "") isValid = false;
+  }
+
+  const submitBtn = document.getElementById("submit-form-btn");
+  if (submitBtn) {
+    if (isValid) {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = "1";
+      submitBtn.style.cursor = "pointer";
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.5";
+      submitBtn.style.cursor = "not-allowed";
+    }
+  }
+}
+
+// 💡 提案分野が入力されたら、ジャンル選択・概要入力欄を表示し、かつ連動させる処理
+function updateProposalButton() {
+  const val = document.getElementById("input-bunya").value.trim();
+  const btn = document.getElementById("btn-my-proposal");
+  const hiddenArea = document.getElementById("hidden-proposal-area"); 
+
+  if (val) {
+    if (btn) {
+      btn.innerText = `「${val}」を希望に設定する`;
+      btn.disabled = false;
+    }
+    if (hiddenArea) {
+      hiddenArea.style.display = "block";
+    }
+  } else {
+    if (btn) {
+      btn.innerText = "（質問1を入力してください）";
+      btn.disabled = true;
+    }
+    if (hiddenArea) {
+      hiddenArea.style.display = "none";
+    }
+  }
+
+  // 💡 追加：「自分が提案した分野」が希望として選ばれている場合、入力を自動反映させる
+  let changed = false;
+  if (isKibou1Proposal) {
+    kibou1 = val;
+    changed = true;
+  }
+  if (isKibou2Proposal) {
+    kibou2 = val;
+    changed = true;
+  }
+  if (changed) {
+    updateDisplay();
+  }
+}
+
+// 💡 追加：第2引数(isProposal)で、提案ボタンから選ばれたか判定できるように修正
+function selectField(fieldName, isProposal = false) {
+  if (!fieldName || fieldName.trim() === "") return;
+  fieldName = fieldName.trim();
+
+  if (!kibou1) {
+    kibou1 = fieldName;
+    isKibou1Proposal = isProposal; // 第1希望が提案ボタン経由か記録
+  } else if (!kibou2 && kibou1 !== fieldName) {
+    kibou2 = fieldName;
+    isKibou2Proposal = isProposal; // 第2希望が提案ボタン経由か記録
+  } else if (kibou1 === fieldName || kibou2 === fieldName) {
+    alert("その分野はすでに選択されています。");
+  } else {
+    alert("すでに第2希望まで選択されています。「選び直す」を押して解除してください。");
+  }
+  updateDisplay();
+}
+
+function clearField(num) {
+  if (num === 1) {
+    kibou1 = "";
+    isKibou1Proposal = false; // 💡 選び直した場合は連動を解除
+  }
+  if (num === 2) {
+    kibou2 = "";
+    isKibou2Proposal = false; // 💡 選び直した場合は連動を解除
+  }
+  updateDisplay();
+}
+
+function updateDisplay() {
+  const disp1 = document.getElementById("disp-kibou1");
+  const disp2 = document.getElementById("disp-kibou2");
+  if (disp1) disp1.innerText = kibou1 || "未選択";
+  if (disp2) disp2.innerText = kibou2 || "未選択";
+}
+
+function toggleXDetail() {
+  const xVal = document.getElementById("input-x").value;
+  const detailBox = document.getElementById("x-detail-box");
+  if (detailBox) detailBox.style.display = (xVal === "宣伝する" || xVal === "はい（呼び掛けを希望する）") ? "block" : "none";
+  checkRequiredFields(); 
+}
+
+function toggleRouteOther() {
+  const routeVal = document.getElementById("input-route").value;
+  const routeOther = document.getElementById("input-route-other");
+  if (routeOther) routeOther.style.display = (routeVal === "その他") ? "block" : "none";
+  checkRequiredFields(); 
+}
+
+function openGoogleForm() {
+  const bunya = document.getElementById("input-bunya") ? document.getElementById("input-bunya").value : "";
+  const genre = document.getElementById("input-genre") ? document.getElementById("input-genre").value : ""; 
+  const gaiyou = document.getElementById("input-gaiyou") ? document.getElementById("input-gaiyou").value : "";
+  const kyomi = document.getElementById("input-kyomi") ? document.getElementById("input-kyomi").value : "";
+  const xSend = document.getElementById("input-x") ? document.getElementById("input-x").value : "";
+  const xDetail = document.getElementById("input-x-detail") ? document.getElementById("input-x-detail").value : "";
+  const free = document.getElementById("input-free") ? document.getElementById("input-free").value : "";
+  
+  let route = document.getElementById("input-route") ? document.getElementById("input-route").value : "";
+  if (route === "その他") {
+    route = document.getElementById("input-route-other") ? document.getElementById("input-route-other").value : "";
+  }
+
+  let targetUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdi0qReWcpA1bV4G844RfWvjuudknDhM6O-fB663S6uXLpoGQ/viewform?usp=pp_url&entry.669942318=DUMMY_BUNYA&entry.930125208=DUMMY_GENRE&entry.2097477009=DUMMY_GAIYOU&entry.1542851026=DUMMY_KIBOU1&entry.45651459=DUMMY_KIBOU2&entry.45918589=DUMMY_KYOMI&entry.1192163566=DUMMY_X&entry.2036668219=DUMMY_XDETAIL&entry.375378926=DUMMY_ROUTE&entry.405628407=DUMMY_FREE";
+
+  targetUrl = targetUrl.replace("DUMMY_BUNYA", encodeURIComponent(bunya));
+  targetUrl = targetUrl.replace("DUMMY_GENRE", encodeURIComponent(genre)); 
+  targetUrl = targetUrl.replace("DUMMY_GAIYOU", encodeURIComponent(gaiyou));
+  targetUrl = targetUrl.replace("DUMMY_KIBOU1", encodeURIComponent(kibou1));
+  targetUrl = targetUrl.replace("DUMMY_KIBOU2", encodeURIComponent(kibou2));
+  targetUrl = targetUrl.replace("DUMMY_KYOMI", encodeURIComponent(kyomi));
+  targetUrl = targetUrl.replace("DUMMY_X", encodeURIComponent(xSend));
+  targetUrl = targetUrl.replace("DUMMY_XDETAIL", encodeURIComponent(xDetail));
+  targetUrl = targetUrl.replace("DUMMY_ROUTE", encodeURIComponent(route));
+  targetUrl = targetUrl.replace("DUMMY_FREE", encodeURIComponent(free));
+
+  window.open(targetUrl, "_blank");
+}
+
+function showProposalForm() {
+  const formArea = document.getElementById("proposal-form-area");
+  if (formArea) {
+    formArea.style.display = "block";
+    formArea.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
