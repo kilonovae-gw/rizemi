@@ -117,7 +117,169 @@
         </tbody>
     </table>
 
-    <div id="zemi-sp">
+      <div id="zemi-sp">
+        <div class="zemi-title-wrap" style="position: relative; max-width: 800px; width: 90%; margin: 0 auto;">
+            <h2 class="zemi-title-sp" style="width: 100%; margin: 0;">ゼミ班</h2>
+        </div>
+        
+        <section class="zemi-sp">
+            <div style="padding: 1rem 0; text-align: center;">
+                <p style="font-size: 1rem; line-height: 2; color: #cecece; margin-bottom: 0.5rem;">
+                    りゼミ7thは、現在希望分野を募集中です！<br>これまでに提案された分野はこちらです。<br>
+                    <span style="font-size: 0.9em;">(自動集計中)</span>
+                </p>
+                <p style="font-size: 0.85rem; line-height: 1.6; color: #aaa; margin-top: 0; margin-bottom: 1rem;">
+                    ※第1希望の人数が多い順に表示しています。<br>
+                    ※原則4名以上でゼミ班成立ですが，班が多すぎる場合などは希望者の多い班が優先されます。
+                </p>
+            </div>
+
+            <div id="zemi-results-container"></div>
+
+            <div style="text-align: center; margin: 4rem 0 2rem 0;">
+                <p style="color: #cecece; margin-bottom: 0.5rem; font-weight: bold; font-size: 1.1rem;">
+                    ＼ 希望分野の提案・投票はこちらから ／
+                </p>
+                
+                <button onclick="showProposalForm()" class="submit-btn" style="width: 80%; max-width: 400px; margin: 0 auto;">
+                    希望調査フォームを開く ▼
+                </button>
+            </div>
+
+            <div id="proposal-form-area" style="display: none; padding-top: 2rem; border-top: 2px dashed #777;">
+                <div class="form-wrapper">
+
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #e0e0e0; border-left: 4px solid #C0A313;">
+                        <h3 style="margin-top: 0; margin-bottom: 10px; font-size: 1.1rem; color: #333; border-bottom: none; padding-bottom: 0;">今回の希望調査の方法</h3>
+                        <ol style="margin: 0; padding-left: 1.5rem; color: #333; font-size: 0.95rem; line-height: 1.6;">
+                            <li style="margin-bottom: 8px;"><strong>提案する（任意）</strong> <br>やりたいゼミ班を1つ提案できます。提案されたゼミは，このサイト上にリアルタイムで公開されます！</li>
+                            <li><strong>選んで投票（必須）</strong> <br>みんなの提案一覧の中から、参加したいゼミを選んでください。</li>
+                        </ol>
+                        <p style="margin: 10px 0 0 0; font-size: 0.85rem; color: #666;">
+                            ※反映には少し時間がかかることがあります。<br>
+                            ※すでに一覧にやりたいゼミがある場合は、新たな提案はせず「投票」だけでOKです！
+                        </p>
+                    </div>
+
+                    <div style="background: rgba(204, 255, 0, 0.15); border: 1px dashed #9e9d24; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
+                        <p style="margin: 0; font-size: 0.95rem; color: #333; line-height: 1.6;">
+                            本フォームの送信によって参加が決定するものではございません。<br>また、合宿に参加せずオンラインでゼミに参加することもできますので、少しでも興味のある方は気軽にお答えください！
+                        </p>
+                    </div>
+                  
+                    <div class="form-section">
+                        <h3>[質問1] ゼミ班の提案 <span style="font-size: 0.85em;">（任意）</span></h3>
+                        <p style="font-size: 14px; margin-bottom: 15px;">すでにある班でも，扱いたい本や内容が異なれば別の班として提案ができます。</p>
+                        
+                        <label for="input-bunya" style="font-weight: bold; display: block; margin-bottom: 8px;">
+                            提案する分野名
+                        </label>
+                        <input type="text" id="input-bunya" placeholder="例：流体力学">
+
+                        <div id="hidden-proposal-area" style="display: none;">
+                            <label style="font-weight: bold; display: block; margin-top: 20px; margin-bottom: 8px;">
+                                分野が該当するジャンルを選んでください（2つまで選択可能）
+                            </label>
+                            <div id="genre-buttons" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                                <button type="button" class="field-btn genre-btn" onclick="toggleGenre(this, '物理')">物理</button>
+                                <button type="button" class="field-btn genre-btn" onclick="toggleGenre(this, '数学')">数学</button>
+                                <button type="button" class="field-btn genre-btn" onclick="toggleGenre(this, '化学・生物学')">化学・生物学</button>
+                                <button type="button" class="field-btn genre-btn" onclick="toggleGenre(this, 'その他')">その他</button>
+                            </div>
+                            <input type="hidden" id="input-genre" value="">
+
+                            <label for="input-gaiyou" style="font-weight: bold; display: block; margin-top: 20px; margin-bottom: 8px;">
+                                提案するゼミの概要（上のゼミ一覧に表示されます）
+                            </label>
+                            <textarea id="input-gaiyou" placeholder="（入門的なことをやりたい，○○という本を読みたい，など）"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        
+                        <h3>[質問2] 参加したいゼミ班 <span style="color: #ff4d4d !important; font-size: 0.85em;">（必須）</span></h3>
+                        <p style="font-size: 14px; margin-bottom: 10px;">すでに提案された以下の分野、またはご自身が提案した分野から選んでください。<br>（第2希望まで選択可能）</p>
+
+                        <div class="my-proposal-box">
+                            <span class="box-label">自分が提案した分野を選ぶ</span>
+                            <p style="font-size: 12px; margin: 5px 0 10px 0; color: #555;">質問1に入力した分野名が自動でここに反映され、選択できるようになります。</p>
+                            <button type="button" id="btn-my-proposal" class="field-btn proposal-btn" onclick="selectField(document.getElementById('input-bunya').value)" disabled>質問1を入力</button>
+                        </div>
+
+                        <details>
+                            <summary>物理学</summary>
+                            <div id="area-physics" style="margin-top: 10px;"></div>
+                        </details>
+                        <details>
+                            <summary>数学</summary>
+                            <div id="area-math" style="margin-top: 10px;"></div>
+                        </details>
+                        <details>
+                            <summary>化学・生物学</summary>
+                            <div id="area-chem-bio" style="margin-top: 10px;"></div>
+                        </details>
+                        <details>
+                            <summary>その他</summary>
+                            <div id="area-other" style="margin-top: 10px;"></div>
+                        </details>
+
+                        <div class="status-box">
+                            <p>▼ あなたの選択状況</p>
+                            <p>第１希望： <span id="disp-kibou1">未選択</span> <button class="clear-btn" onclick="clearField(1)">選び直す</button></p>
+                            <p>第２希望： <span id="disp-kibou2">未選択</span> <button class="clear-btn" onclick="clearField(2)">選び直す</button></p>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>[その他の質問]</h3>
+                        <label for="input-kyomi" style="font-weight: bold; display: block; margin-bottom: 8px;">
+                            どれくらい興味がありますか？ <span style="color: #ff4d4d !important; font-size: 0.85em;">（必須）</span>
+                        </label>
+                        <select id="input-kyomi">
+                            <option value="">選択してください</option>
+                            <option value="ぜひとも参加したい">ぜひとも参加したい</option>
+                            <option value="参加するかもしれない">参加するかもしれない</option>
+                            <option value="参加しないかもしれない">参加しないかもしれない</option>
+                            <option value="参加しない可能性が高い">参加しない可能性が高い</option>
+                        </select>
+                        
+                        <label for="input-x" style="font-weight: bold; display: block; margin-top: 20px; margin-bottom: 4px;">
+                            りゼミのXアカウントであなたの希望分野を呼び掛けますか？ <span style="color: #ff4d4d !important; font-size: 0.85em;">（必須）</span>
+                        </label>
+                        <p style="font-size: 12px; color: #666; margin-top: 0; margin-bottom: 8px;">※宣伝する場合、Xの方であなたの第1希望分野について紹介し、参加を募るポストをします。</p>
+                        <select id="input-x" onchange="toggleXDetail()">
+                            <option value="">選択してください</option>
+                            <option value="宣伝する">宣伝する</option>
+                            <option value="必要ない">必要ない</option>
+                        </select>
+                        <div id="x-detail-box" style="display: none; margin-top: 10px;">
+                            <label for="input-x-detail" style="font-weight: bold;">追加説明（宣伝するを選んだ場合）</label>
+                            <textarea id="input-x-detail" placeholder="例：～という点で興味深い分野なのでぜひ一緒にやりませんか？等"></textarea>
+                        </div>
+                        
+                        <label for="input-route" style="font-weight: bold; display: block; margin-top: 20px; margin-bottom: 8px;">
+                            りゼミをどこで知りましたか？ <span style="color: #ff4d4d !important; font-size: 0.85em;">（必須）</span>
+                        </label>
+                        <select id="input-route" onchange="toggleRouteOther()">
+                            <option value="">選択してください</option>
+                            <option value="X（旧Twitter）">X（旧Twitter）</option>
+                            <option value="知人・友人">知人・友人</option>
+                            <option value="大学掲示ポスター（一部大学のみ）">大学掲示ポスター（一部大学のみ）</option>
+                            <option value="その他">その他</option>
+                        </select>
+                        <input type="text" id="input-route-other" placeholder="その他の場合は具体的にご記入ください" style="display: none; margin-top: 10px;">
+
+                        <label for="input-free" style="font-weight: bold; display: block; margin-top: 20px; margin-bottom: 8px;">自由記述欄</label>
+                        <textarea id="input-free" placeholder="意見，要望など，自由にご記入ください"></textarea>
+                    </div>
+
+                    <button id="submit-form-btn" class="submit-btn" onclick="openGoogleForm()">入力内容を確認して送信画面へ進む</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<!--    <div id="zemi-sp">
         <div class="zemi-title-wrap" style="position: relative; max-width: 800px; width: 90%; margin: 0 auto;">
             <h2 class="zemi-title-sp" style="width: 100%; margin: 0;">ゼミ班</h2>
         </div>
@@ -345,7 +507,7 @@
             </div>
             
         </section>
-    </div>
+    </div>  -->
 
     <div class="speace-sp" id="event-sp">
         <h2 class="zemi-title-sp">EVENT</h2>
@@ -397,6 +559,24 @@
                 ]
             });
         });
+    </script>
+        let selectedGenres = [];
+        
+        function toggleGenre(btn, genre) {
+            const index = selectedGenres.indexOf(genre);
+            if (index > -1) {
+                selectedGenres.splice(index, 1);
+                btn.classList.remove('active');
+            } else {
+                if (selectedGenres.length >= 2) {
+                    alert("ジャンルは2つまでしか選択できません。");
+                    return;
+                }
+                selectedGenres.push(genre);
+                btn.classList.add('active');
+            }
+            document.getElementById("input-genre").value = selectedGenres.join(", ");
+        }
     </script>
 </body>
 </html>
