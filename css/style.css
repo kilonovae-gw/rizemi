@@ -1499,3 +1499,45 @@ body.r6-sp .top-sp a:hover {
     padding: 10px 14px 16px 14px;
     border-top: 1px dashed #444;             /* 見出しと中身の区切り線 */
 }
+
+/* 💡「自分が提案した分野を選ぶ」エリア全体の枠囲みとカード化 */
+.my-proposal-box {
+    background: rgba(255, 255, 255, 0.04);  /* うっすらと明るい背景 */
+    border: 1px solid #55555d;               /* クッキリとした枠線 */
+    border-left: 4px solid #ccff00;          /* アクセントカラー（アクセント枠） */
+    border-radius: 8px;                      /* 角丸 */
+    padding: 1rem 1.2rem;                    /* 内側の余白 */
+    margin-bottom: 1.5rem;                   /* 下のジャンル枠とのすき間 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);/* 軽い影で浮かび上がらせる */
+}
+
+/* 「自分が提案した分野を選ぶ」の見出し（ラベル） */
+.my-proposal-box .box-label {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #ffffff;                          /* くっきり読める白文字 */
+    margin-bottom: 0.4rem;
+}
+
+/* 💡「質問1に入力した分野名が自動で〜」の説明文の見易さ改善 */
+.my-proposal-box p {
+    font-size: 0.85rem !important;          /* 読みやすい文字サイズに拡大 */
+    color: #cecece !important;              /* 暗いグレーから明るいグレーへ変更して可視性アップ */
+    line-height: 1.6 !important;            /* 行間を広げて読みやすく */
+    margin: 0.4rem 0 1rem 0 !important;
+}
+
+/* 「質問1を入力」ボタン（提案ボタン）の基本・非活性表示 */
+.my-proposal-box .proposal-btn {
+    margin-top: 0.3rem;
+}
+
+/* ボタンが無効（未入力）状態のときの見やすさ調整 */
+.my-proposal-box .proposal-btn:disabled {
+    background: #333338;
+    color: #888888;
+    border-color: #55555d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
