@@ -1393,7 +1393,7 @@ body.r6-sp .top-sp a:hover {
     padding: 1.2rem 2rem;
     
     /* 💡 ダークモード背景に映える鮮やかなグラデーションゴールド */
-    background: linear-gradient(135deg, #C0A313 0%, #FFE033 100%);
+    background: #FFE033;
     color: #000000; /* 黒文字でクッキリ読めるように調整 */
     
     font-size: 1.25rem;
