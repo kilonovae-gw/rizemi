@@ -153,10 +153,10 @@ window.renderZemiPage = function(page) {
         let borderColor = '#555'; 
         let badgeHtml = '';
 
-        if (first >= 5) {
+        if (first >= 4) {
             borderColor = '#ff6b6b'; 
             badgeHtml = '<span style="background: #ff6b6b; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">班成立！</span>';
-        } else if (first >= 6) {
+        } else if (first >= 3) {
             borderColor = '#91b825'; 
             badgeHtml = '<span style="background: #91b825; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">もう少し！</span>';
         }
