@@ -1438,3 +1438,23 @@ body.r6-sp .top-sp a:hover {
     /* 💡 クッキリ浮かび上がる発光風の影 */
     box-shadow: 0 4px 20px rgba(255, 224, 51, 0.5);
     cursor: pointer;
+
+   /* 💡「選び直す」ボタンの基本色設定 */
+.clear-btn {
+    background-color: #44444c; /* ボタンの背景色（暗めのグレー） */
+    color: #e4e4e7;            /* 文字色（明るいグレー） */
+    border: 1px solid #666;    /* 枠線 */
+    border-radius: 4px;        /* 少し角を丸く */
+    padding: 2px 8px;          /* 内側の余白 */
+    font-size: 0.8rem;         /* 文字サイズ */
+    margin-left: 8px;          /* 希望名とのすき間 */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* 💡 マウスを乗せたとき（またはタップ時）に赤く変更 */
+.clear-btn:hover {
+    background-color: #ff4d4d; /* 目立つ赤色 */
+    color: #ffffff;            /* 文字を白に */
+    border-color: #ff4d4d;
+}
