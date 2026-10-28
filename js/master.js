@@ -42,10 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const dataRows = allRows.slice(1)
                 .filter(row => row[0]) 
                 .sort((a, b) => {
-                    const firstA = Number(a[5]) || 0;
-                    const firstB = Number(b[5]) || 0;
-                    const secondA = Number(a[6]) || 0;
-                    const secondB = Number(b[6]) || 0;
+                  // F列(row[5]) と G列(row[6]) を数値化（全角数字対策含む）
+                const firstA = parseInt(String(a[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+                const firstB = parseInt(String(b[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+                const secondA = parseInt(String(a[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+                const secondB = parseInt(String(b[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
                     
                     if (firstB !== firstA) {
                         return firstB - firstA; // 第1希望で比較
