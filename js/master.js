@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 💡 質問2のフォーム用のボタン生成（全件一括で実行）
             dataRows.forEach(row => {
-                const fieldName = row[2];
+                const fieldName = row[0];
                 const tagsField = row[4] || '';
                 const btnHtml = `<button type="button" class="field-btn" onclick="selectField('${fieldName}')">${fieldName}</button> `;
                 
@@ -141,11 +141,11 @@ window.renderZemiPage = function(page) {
     html += '<div class="zemi-grid-container">';
 
     pageData.forEach(row => {
-        const fieldName = row[0];
+        const fieldName = row[2];
         const first = Number(row[1]) || 0;
         const second = Number(row[2]) || 0;
         
-        let description = (row[3] || '').trim();
+        let description = (row[4] || '').trim();
         if (description === '' || description === '#N/A') {
             description = '概要はまだありません。';
         }
