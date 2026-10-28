@@ -1366,6 +1366,37 @@ body.r6-sp .top-sp a:hover {
     border-color: #C0A313;
 }
 
+/* ジャンル選択ボタンの基本スタイル */
+.field-btn.genre-btn {
+    background: #2a2a2e;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 8px 16px;
+    margin: 4px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: normal;
+    transition: all 0.2s ease;
+}
+
+/* 💡 選択されたジャンルボタン（目立たせるデザイン） */
+.field-btn.genre-btn.active {
+    background: #ccff00 !important; /* 鮮やかなネオンイエロー */
+    color: #000000 !important;      /* 文字を濃い黒にして視認性を高める */
+    border-color: #ccff00 !important;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(204, 255, 0, 0.6); /* 発光風の影で選択状態を強調 */
+    transform: scale(1.05); /* 少し拡大させて選択感を演出 */
+}
+
+/* ホバー時の挙動（未選択時） */
+.field-btn.genre-btn:hover:not(.active) {
+    background: #C0A313;
+    color: #000;
+    border-color: #C0A313;
+}
+
 /* 選択状況確認ボックス */
 .status-box {
     background: rgba(0, 0, 0, 0.3);
