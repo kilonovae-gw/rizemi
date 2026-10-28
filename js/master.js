@@ -33,16 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (areaChemBio) areaChemBio.innerHTML = ''; 
     if (areaOther) areaOther.innerHTML = '';
 
-   fetch(sheetUrl)
-    .then(response => response.text())
-    .then(csvText => {
-        const allRows = parseCSV(csvText);
-        
-        // 💡 ヘッダー行を除外し、分野名（C列 / row[2]）が存在する行のみ抽出
-        const dataRows = allRows.slice(1)
-            .filter(row => row[2] && row[2].trim() !== '') 
-            .sort((a, b) => {
-                // F列(row[5]) と G列(row[6]) を数値化（全角数字対策含む）
+ fetch(sheetUrl)
+        .then(response => response.text())
+        .then(csvText => {
+            const allRows = parseCSV(csvText);
+            
+            // 💡ここで「第1希望順 → 第2希望順」の辞書式ソートを行います
+            const dataRows = allRows.slice(1)
+                .filter(row => row[0]) 
+                .sort((a, b) => {
+                  // F列(row[5]) と G列(row[6]) を数値化（全角数字対策含む）
+
                 const firstA = parseInt(String(a[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
                 const firstB = parseInt(String(b[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
                 const secondA = parseInt(String(a[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
