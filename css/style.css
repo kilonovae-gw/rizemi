@@ -1380,3 +1380,30 @@ body.r6-sp .top-sp a:hover {
     color: #ccff00; /* 選択内容を強調 */
     font-weight: bold;
 }
+
+/* =========================================
+   「希望調査フォームを開く」ボタンの強調設定（アニメーションなし）
+========================================= */
+
+.submit-btn {
+    display: block;
+    width: 85%;
+    max-width: 420px;
+    margin: 1.5rem auto 0;
+    padding: 1.2rem 2rem;
+    
+    /* 💡 ダークモード背景に映える鮮やかなグラデーションゴールド */
+    background: linear-gradient(135deg, #C0A313 0%, #FFE033 100%);
+    color: #000000; /* 黒文字でクッキリ読めるように調整 */
+    
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    
+    border: none;
+    border-radius: 50px; /* カプセル型で押しやすい形状に */
+    
+    /* 💡 クッキリ浮かび上がる発光風の影 */
+    box-shadow: 0 4px 20px rgba(255, 224, 51, 0.5);
+    cursor: pointer;
