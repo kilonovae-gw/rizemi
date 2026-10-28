@@ -1,9 +1,11 @@
 const responsive_menu_btn = document.querySelector('.responsive_btn');
 
+// 💡 レスポンシブ用ハンバーガーメニューのクリックイベント登録
 if (responsive_menu_btn) {
   responsive_menu_btn.addEventListener('click', menuToggle);
 }
 
+// 💡 スマホ版・PC版ナビゲーションメニューの開閉（トグル）を行う関数
 function menuToggle() {
   const pcMenu = document.querySelector('.main-nav');
   const spMenu = document.querySelector('.main-nav-sp');
@@ -15,55 +17,61 @@ function menuToggle() {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 💡公開用（Sheet2）のCSV取得URL
+    // 💡 Googleスプレッドシート（Sheet2）の公開用CSV URL
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQwd-NfW52i7COyA23A_pbCIR6M-ZN8zpMdV4iW299l1NwR2VMnVKS8Ri1grVMkyLHtaRadoeJaRIfo/pub?gid=453089662&single=true&output=csv';
 
+    // 💡 ゼミカード一覧を描画するコンテナ要素を取得
     const container = document.getElementById('zemi-results-container');
-    if(!container) return;
+    if(!container) return; // 該当要素がないページでは処理を中断
 
+    // 💡 データ取得中の表示
     container.innerHTML = '<p style="text-align: center; color: #cecece;">現在の希望状況を読み込んでいます...</p>';
 
+    // 💡 質問2のフォーム内にある各ジャンル別アコーディオンの描画エリアを取得
     const areaPhysics = document.getElementById('area-physics');
     const areaMath = document.getElementById('area-math');
     const areaChemBio = document.getElementById('area-chem-bio'); 
     const areaOther = document.getElementById('area-other');
 
+    // 💡 各アコーディオンエリアを一度初期化（空にする）
     if (areaPhysics) areaPhysics.innerHTML = '';
     if (areaMath) areaMath.innerHTML = '';
     if (areaChemBio) areaChemBio.innerHTML = ''; 
     if (areaOther) areaOther.innerHTML = '';
 
+    // 💡 CSVデータを取得・パースする処理
     fetch(sheetUrl)
         .then(response => response.text())
         .then(csvText => {
-            const allRows = parseCSV(csvText);
+            const allRows = parseCSV(csvText); // CSV文字列を配列に変換
             
-            // 💡【抽出・ソート処理】
-            const dataRows = allRows.slice(1)
+            // 💡【データのフィルタリングおよびソート処理】
+            const dataRows = allRows.slice(1) // 1行目（ヘッダー）を除外
                 .filter(row => {
-                    // ① A列（row[0]）が存在しない・空欄の行を除外する
+                    // ① A列（row[0]）が存在し、空欄でないことを確認（送信履歴のある行のみ抽出）
                     const hasTimestamp = row[0] && row[0].trim() !== '';
-                    // ② C列（row[2]）に分野名が入っているか確認する（空欄の場合は新規分野として表示しない）
+                    
+                    // ② C列（row[2]）に分野名が入っていることを確認（既存分野への人数加算のみで提案分野名が空の行は除外）
                     const hasFieldName = row[2] && row[2].trim() !== '';
 
-                    // 両方の条件を満たす行のみをカード表示用として抽出
                     return hasTimestamp && hasFieldName;
                 }) 
                 .sort((a, b) => {
-                    // 💡 F列(row[5]:第1希望) と G列(row[6]:第2希望) の人数を取得（全角数字も半角に変換して数値化）
-                    const firstA = parseInt(String(a[5] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-                    const firstB = parseInt(String(b[5] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-                    const secondA = parseInt(String(a[6] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-                    const secondB = parseInt(String(b[6] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+                    // 💡 F列(row[5]: 第1希望) と G列(row[6]: 第2希望) の人数を取得（parseCount関数で全角・文字化けを防止して数値化）
+                    const firstA = parseCount(a[5]);
+                    const firstB = parseCount(b[5]);
+                    const secondA = parseCount(a[6]);
+                    const secondB = parseCount(b[6]);
                     
-                    // 第1希望の人数で降順ソート（同じなら第2希望の人数でソート）
+                    // 第1希望の人数が多い順（降順）に並び替え
                     if (firstB !== firstA) {
-                        return firstB - firstA;
+                        return firstB - firstA; 
                     }
-                    return secondB - secondA;
+                    // 第1希望が同数の場合は、第2希望の人数が多い順に並び替え
+                    return secondB - secondA;   
                 });
 
-            // 💡【質問2：アコーディオン内の分野選択ボタン生成】
+            // 💡【質問2：アコーディオン内の分野選択ボタンを一括生成】
             dataRows.forEach(row => {
                 const fieldName = row[2].trim(); // C列：分野名
                 const tagsField = row[3] || '';  // D列：ジャンル（タグ）
@@ -71,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 let hasMainTag = false; 
 
-                // ジャンルタグ（D列）の文字列に含まれるキーワードに応じてボタンを各エリアに配置
+                // D列のタグ情報をもとに、該当するアコーディオン内へ選択ボタンを挿入
                 if (tagsField.includes('物理') && areaPhysics) {
                     areaPhysics.insertAdjacentHTML('beforeend', btnHtml);
                     hasMainTag = true;
@@ -84,13 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     areaChemBio.insertAdjacentHTML('beforeend', btnHtml);
                     hasMainTag = true;
                 }
-                // 特定タグにヒットしない場合や「その他」の場合は「その他」アコーディオンへ配置
                 if ((tagsField.includes('その他') || !hasMainTag) && areaOther) {
                     areaOther.insertAdjacentHTML('beforeend', btnHtml);
                 }
             });
 
-            // 💡 抽出したデータを保存して1ページ目を描画
+            // 💡 フィルタリング・ソート済みのデータをグローバル変数に保存し、1ページ目を描画
             window.zemiDataRows = dataRows;
             renderZemiPage(1);
 
@@ -101,21 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
-// 💡 指定したページ番号のゼミ一覧を描画する関数
+// 💡 指定したページ番号のゼミ一覧カードを描画する関数
 window.renderZemiPage = function(page) {
     const container = document.getElementById('zemi-results-container');
     if (!container || !window.zemiDataRows) return;
 
-    const itemsPerPage = 10; // 1ページあたりの表示数
+    const itemsPerPage = 10; // 💡 1ページあたりの表示カード数（10件）
     const totalPages = Math.ceil(window.zemiDataRows.length / itemsPerPage) || 1;
 
-    // ページ番号の補正
+    // 💡 ページ番号が範囲外にならないよう補正
     if (page < 1) page = 1;
     if (page > totalPages) page = totalPages;
 
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const pageData = window.zemiDataRows.slice(startIndex, endIndex);
+    const pageData = window.zemiDataRows.slice(startIndex, endIndex); // 現在のページに表示する分のみ取得
 
     if (window.zemiDataRows.length === 0) {
         container.innerHTML = '<p style="text-align: center; color: #cecece;">現在、希望分野はまだありません。</p>';
@@ -125,18 +132,21 @@ window.renderZemiPage = function(page) {
     let html = '';
     let paginationHtml = ''; 
 
-    // 💡 ページネーションUI生成
+    // 💡【ページネーション（前へ・次へボタン）のHTML生成】
     if (totalPages > 1) {
         paginationHtml += '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 1.5rem;">';
         
+        // 前へボタン
         if (page > 1) {
             paginationHtml += `<button onclick="renderZemiPage(${page - 1})" style="background: #555; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.95rem;">&lt; 前へ</button>`;
         } else {
             paginationHtml += `<button style="background: #333; color: #777; border: none; padding: 8px 16px; border-radius: 4px; cursor: not-allowed; font-weight: bold; font-size: 0.95rem;" disabled>&lt; 前へ</button>`;
         }
 
+        // 現在のページ / 全ページ数
         paginationHtml += `<span style="color: #cecece; font-weight: bold; font-size: 1.1rem;">${page} / ${totalPages}</span>`;
 
+        // 次へボタン
         if (page < totalPages) {
             paginationHtml += `<button onclick="renderZemiPage(${page + 1})" style="background: #555; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.95rem;">次へ &gt;</button>`;
         } else {
@@ -144,27 +154,26 @@ window.renderZemiPage = function(page) {
         }
 
         paginationHtml += '</div>';
-        html += paginationHtml; 
+        html += paginationHtml; // カード一覧の上部にページネーションを追加
     }
 
     html += '<div class="zemi-grid-container">';
 
-    // 💡【ゼミ班カード一覧の個別HTML生成】
+    // 💡【各ゼミカードのHTML生成】
     pageData.forEach(row => {
-        // C列(row[2])：分野名
-        const fieldName = row[2] ? row[2].trim() : '';
-
-        // F列(row[5])：第1希望人数 & G列(row[6])：第2希望人数（数値変換）
-        const first = parseInt(String(row[5] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-        const second = parseInt(String(row[6] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+        const fieldName = row[2] ? row[2].trim() : ''; // C列：分野名
         
-        // E列(row[4])：概要
+        // F列(row[5])：第1希望人数, G列(row[6])：第2希望人数 を数値を安全に抽出して取得
+        const first = parseCount(row[5]);
+        const second = parseCount(row[6]);
+        
+        // E列(row[4])：概要（未入力時やエラー時は初期テキスト）
         let description = (row[4] || '').trim();
         if (description === '' || description === '#N/A') {
             description = '概要はまだありません。';
         }
 
-        // 第1希望の人数に応じた条件分岐（枠線の色とバッジの付与）
+        // 第1希望人数に応じた枠線カラーおよびバッジ表示の設定
         let borderColor = '#555'; 
         let badgeHtml = '';
 
@@ -176,14 +185,13 @@ window.renderZemiPage = function(page) {
             badgeHtml = '<span style="background: #91b825; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">もう少し！</span>';
         }
 
-        // カード全体のHTML構成
+        // カード1要素分のHTML出力組み立て
         html += `
         <div class="zemi-card-sp" style="background: rgba(255,255,255,0.05); border: 2px solid ${borderColor}; border-radius: 8px; padding: 1rem; height: 100%; box-sizing: border-box;">
             <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #fff;">
                 ${fieldName} ${badgeHtml}
             </h3>
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                <!-- 人数の反映表示部分 -->
                 <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
                 <span style="background: #999; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第2希望: ${second}人</span>
             </div>
@@ -196,8 +204,9 @@ window.renderZemiPage = function(page) {
         </div>`;
     });
 
-    html += '</div>';
+    html += '</div>'; // グリッドの終了
 
+    // カード一覧の下部にもページネーションを追加
     if (totalPages > 1) {
         html += paginationHtml.replace('margin-bottom: 1.5rem;', 'margin-top: 1.5rem; margin-bottom: 0;');
     }
@@ -205,7 +214,7 @@ window.renderZemiPage = function(page) {
     container.innerHTML = html;
 };
 
-// CSVパース関数
+// 💡 CSVテキストを配列に分解・整形するパース関数
 function parseCSV(str) {
     const result = [];
     let row = [], inQuotes = false, val = "";
@@ -229,7 +238,7 @@ function parseCSV(str) {
     return result;
 }
 
-// ゼミ班アコーディオン
+// 💡 汎用アコーディオンメニューの制御関数
 function setupAccordion(headerClass, itemClass, contentClass) {
   document.querySelectorAll(headerClass).forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -254,6 +263,7 @@ function setupAccordion(headerClass, itemClass, contentClass) {
 
 setupAccordion('.accordion-header', '.accordion-item', '.accordion-content');
 setupAccordion('.accordion-header-sp', '.accordion-item-sp', '.accordion-content-sp');
+
 
 /* =========================================================
    新システム（提案＆希望選択フォーム）の処理
