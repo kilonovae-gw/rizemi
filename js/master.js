@@ -141,10 +141,12 @@ window.renderZemiPage = function(page) {
     html += '<div class="zemi-grid-container">';
 
     pageData.forEach(row => {
-        const fieldName = row[2];
-        const first = Number(row[5]) || 0;
-        const second = Number(row[6]) || 0;
-        
+      const fieldName = row[2] ? row[2].trim() : '';
+    // 数値変換処理を安全に実施
+    const first = parseInt(String(row[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+    const second = parseInt(String(row[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+     
+       
         let description = (row[4] || '').trim();
         if (description === '' || description === '#N/A') {
             description = '概要はまだありません。';
