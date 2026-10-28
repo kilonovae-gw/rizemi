@@ -1280,3 +1280,103 @@ body.r6-sp .top-sp a:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* 本に少し影をつける */
     object-fit: cover;
 }
+
+/* =========================================
+   希望調査フォームのスタイリング改善
+========================================= */
+
+/* フォーム全体の囲み枠とカード化 */
+.form-wrapper {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 各質問セクションの区切り */
+.form-section {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    border-left: 4px solid #C0A313; /* 見出し横にアクセントカラー */
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* 質問タイトルのデザイン */
+.form-section h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px dashed #555;
+    padding-bottom: 0.5rem;
+}
+
+/* 入力欄（input / select / textarea）の見やすさ調整 */
+.form-section input[type="text"],
+.form-section select,
+.form-section textarea {
+    width: 100%;
+    background-color: #1a1a1d;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+/* 入力欄フォーカス時（クリック時）の発光エフェクト */
+.form-section input[type="text"]:focus,
+.form-section select:focus,
+.form-section textarea:focus {
+    border-color: #C0A313;
+    outline: none;
+    box-shadow: 0 0 8px rgba(192, 163, 19, 0.4);
+}
+
+/* ラベルテキストの視認性向上 */
+.form-section label {
+    color: #e4e4e7;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* 分野選択ボタン（アコーディオン内）の見た目 */
+.field-btn {
+    background: #2a2a2e;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 8px 14px;
+    margin: 4px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.field-btn:hover {
+    background: #C0A313;
+    color: #000;
+    border-color: #C0A313;
+}
+
+/* 選択状況確認ボックス */
+.status-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px dashed #C0A313;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    color: #fff;
+}
+
+.status-box span {
+    color: #ccff00; /* 選択内容を強調 */
+    font-weight: bold;
+}
