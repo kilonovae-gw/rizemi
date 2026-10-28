@@ -1438,7 +1438,7 @@ body.r6-sp .top-sp a:hover {
     /* 💡 クッキリ浮かび上がる発光風の影 */
     box-shadow: 0 4px 20px rgba(255, 224, 51, 0.5);
     cursor: pointer;
-
+}
    /* 💡「選び直す」ボタンの基本色設定 */
 .clear-btn {
     background-color: #44444c; /* ボタンの背景色（暗めのグレー） */
