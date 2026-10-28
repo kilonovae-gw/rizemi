@@ -33,57 +33,56 @@ document.addEventListener('DOMContentLoaded', () => {
     if (areaChemBio) areaChemBio.innerHTML = ''; 
     if (areaOther) areaOther.innerHTML = '';
 
-    fetch(sheetUrl)
-        .then(response => response.text())
-        .then(csvText => {
-            const allRows = parseCSV(csvText);
-            
-            // 💡ここで「第1希望順 → 第2希望順」の辞書式ソートを行います
-            const dataRows = allRows.slice(1)
-                .filter(row => row[0]) 
-                .sort((a, b) => {
-                  // F列(row[5]) と G列(row[6]) を数値化（全角数字対策含む）
+   fetch(sheetUrl)
+    .then(response => response.text())
+    .then(csvText => {
+        const allRows = parseCSV(csvText);
+        
+        // 💡 ヘッダー行を除外し、分野名（C列 / row[2]）が存在する行のみ抽出
+        const dataRows = allRows.slice(1)
+            .filter(row => row[2] && row[2].trim() !== '') 
+            .sort((a, b) => {
+                // F列(row[5]) と G列(row[6]) を数値化（全角数字対策含む）
                 const firstA = parseInt(String(a[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
                 const firstB = parseInt(String(b[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
                 const secondA = parseInt(String(a[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
                 const secondB = parseInt(String(b[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-                    
-                    if (firstB !== firstA) {
-                        return firstB - firstA; // 第1希望で比較
-                    }
-                    return secondB - secondA;   // 同数なら第2希望で比較
-                });
-
-            // 💡 質問2のフォーム用のボタン生成（全件一括で実行）
-            dataRows.forEach(row => {
-                const fieldName = row[2];
-                const tagsField = row[3] || '';
-                const btnHtml = `<button type="button" class="field-btn" onclick="selectField('${fieldName}')">${fieldName}</button> `;
                 
-                let hasMainTag = false; 
-
-                if (tagsField.includes('物理') && areaPhysics) {
-                    areaPhysics.insertAdjacentHTML('beforeend', btnHtml);
-                    hasMainTag = true;
+                if (firstB !== firstA) {
+                    return firstB - firstA; // 第1希望で比較
                 }
-                if (tagsField.includes('数学') && areaMath) {
-                    areaMath.insertAdjacentHTML('beforeend', btnHtml);
-                    hasMainTag = true;
-                }
-                if ((tagsField.includes('化学') || tagsField.includes('生物')) && areaChemBio) {
-                    areaChemBio.insertAdjacentHTML('beforeend', btnHtml);
-                    hasMainTag = true;
-                }
-                if ((tagsField.includes('その他') || !hasMainTag) && areaOther) {
-                    areaOther.insertAdjacentHTML('beforeend', btnHtml);
-                }
+                return secondB - secondA;   // 同数なら第2希望で比較
             });
 
-            // 💡 ページネーション（ページ切り替え）用にデータを保存して1ページ目を描画
-            window.zemiDataRows = dataRows;
-            renderZemiPage(1);
+        // 💡 質問2のフォーム用のボタン生成
+        dataRows.forEach(row => {
+            const fieldName = row[2].trim();
+            const tagsField = row[3] || ''; // D列(row[3])をジャンルとして判定
+            const btnHtml = `<button type="button" class="field-btn" onclick="selectField('${fieldName}')">${fieldName}</button> `;
+            
+            let hasMainTag = false; 
 
-        })
+            if (tagsField.includes('物理') && areaPhysics) {
+                areaPhysics.insertAdjacentHTML('beforeend', btnHtml);
+                hasMainTag = true;
+            }
+            if (tagsField.includes('数学') && areaMath) {
+                areaMath.insertAdjacentHTML('beforeend', btnHtml);
+                hasMainTag = true;
+            }
+            if ((tagsField.includes('化学') || tagsField.includes('生物')) && areaChemBio) {
+                areaChemBio.insertAdjacentHTML('beforeend', btnHtml);
+                hasMainTag = true;
+            }
+            if ((tagsField.includes('その他') || !hasMainTag) && areaOther) {
+                areaOther.insertAdjacentHTML('beforeend', btnHtml);
+            }
+        });
+
+        window.zemiDataRows = dataRows;
+        renderZemiPage(1);
+    })
+     
         .catch(error => {
             console.error('Error:', error);
             container.innerHTML = '<p style="text-align: center; color: #cecece;">データの読み込みに失敗しました。</p>';
@@ -141,46 +140,45 @@ window.renderZemiPage = function(page) {
 
     html += '<div class="zemi-grid-container">';
 
-    pageData.forEach(row => {
-      const fieldName = row[2] ? row[2].trim() : '';
+pageData.forEach(row => {
+    const fieldName = row[2] ? row[2].trim() : '';
     // 数値変換処理を安全に実施
     const first = parseInt(String(row[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
     const second = parseInt(String(row[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-     
-       
-        let description = (row[4] || '').trim();
-        if (description === '' || description === '#N/A') {
-            description = '概要はまだありません。';
-        }
+    
+    let description = (row[4] || '').trim();
+    if (description === '' || description === '#N/A') {
+        description = '概要はまだありません。';
+    }
 
-        let borderColor = '#555'; 
-        let badgeHtml = '';
+    let borderColor = '#555'; 
+    let badgeHtml = '';
 
-        if (first >= 4) {
-            borderColor = '#ff6b6b'; 
-            badgeHtml = '<span style="background: #ff6b6b; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">班成立！</span>';
-        } else if (first >= 3) {
-            borderColor = '#91b825'; 
-            badgeHtml = '<span style="background: #91b825; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">もう少し！</span>';
-        }
+    if (first >= 4) {
+        borderColor = '#ff6b6b'; 
+        badgeHtml = '<span style="background: #ff6b6b; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">班成立！</span>';
+    } else if (first >= 3) {
+        borderColor = '#91b825'; 
+        badgeHtml = '<span style="background: #91b825; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">もう少し！</span>';
+    }
 
-        html += `
-        <div class="zemi-card-sp" style="background: rgba(255,255,255,0.05); border: 2px solid ${borderColor}; border-radius: 8px; padding: 1rem; height: 100%; box-sizing: border-box;">
-            <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #fff;">
-                ${fieldName} ${badgeHtml}
-            </h3>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
-                <span style="background: #999; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第2希望: ${second}人</span>
-            </div>
-            <details style="background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px;">
-                <summary style="cursor: pointer; font-weight: bold; color: #cecece; font-size: 0.9rem; outline: none;">概要を見る</summary>
-                <p style="margin-top: 0.5rem; margin-bottom: 0; color: #bbb; font-size: 0.85rem; line-height: 1.5;">
-                    ${description.replace(/\n/g, '<br>')}
-                </p>
-            </details>
-        </div>`;
-    });
+    html += `
+    <div class="zemi-card-sp" style="background: rgba(255,255,255,0.05); border: 2px solid ${borderColor}; border-radius: 8px; padding: 1rem; height: 100%; box-sizing: border-box;">
+        <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #fff;">
+            ${fieldName} ${badgeHtml}
+        </h3>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
+            <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
+            <span style="background: #999; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第2希望: ${second}人</span>
+        </div>
+        <details style="background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px;">
+            <summary style="cursor: pointer; font-weight: bold; color: #cecece; font-size: 0.9rem; outline: none;">概要を見る</summary>
+            <p style="margin-top: 0.5rem; margin-bottom: 0; color: #bbb; font-size: 0.85rem; line-height: 1.5;">
+                ${description.replace(/\n/g, '<br>')}
+            </p>
+        </details>
+    </div>`;
+});
 
     html += '</div>'; // グリッドの終了
 
