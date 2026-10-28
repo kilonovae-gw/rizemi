@@ -15,7 +15,7 @@ function menuToggle() {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 💡公開用（Sheet2）のCSV取得URL
+    // 💡公開用（Sheet2）のCSV用URL
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQwd-NfW52i7COyA23A_pbCIR6M-ZN8zpMdV4iW299l1NwR2VMnVKS8Ri1grVMkyLHtaRadoeJaRIfo/pub?gid=453089662&single=true&output=csv';
 
     const container = document.getElementById('zemi-results-container');
@@ -33,68 +33,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if (areaChemBio) areaChemBio.innerHTML = ''; 
     if (areaOther) areaOther.innerHTML = '';
 
-    fetch(sheetUrl)
+ fetch(sheetUrl)
         .then(response => response.text())
         .then(csvText => {
             const allRows = parseCSV(csvText);
             
-            // 💡【抽出・ソート処理】
+            // 💡ここで「第1希望順 → 第2希望順」の辞書式ソートを行います
             const dataRows = allRows.slice(1)
-                .filter(row => {
-                    // ① A列（row[0]）が存在しない・空欄の行を除外する
-                    const hasTimestamp = row[0] && row[0].trim() !== '';
-                    // ② C列（row[2]）に分野名が入っているか確認する（空欄の場合は新規分野として表示しない）
-                    const hasFieldName = row[2] && row[2].trim() !== '';
-
-                    // 両方の条件を満たす行のみをカード表示用として抽出
-                    return hasTimestamp && hasFieldName;
-                }) 
+                .filter(row => row[0]) 
                 .sort((a, b) => {
-                    // 💡 F列(row[5]:第1希望) と G列(row[6]:第2希望) の人数を取得（全角数字も半角に変換して数値化）
-                    const firstA = parseInt(String(a[5] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-                    const firstB = parseInt(String(b[5] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-                    const secondA = parseInt(String(a[6] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-                    const secondB = parseInt(String(b[6] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-                    
-                    // 第1希望の人数で降順ソート（同じなら第2希望の人数でソート）
-                    if (firstB !== firstA) {
-                        return firstB - firstA;
-                    }
-                    return secondB - secondA;
-                });
+                  // F列(row[5]) と G列(row[6]) を数値化（全角数字対策含む）
 
-            // 💡【質問2：アコーディオン内の分野選択ボタン生成】
-            dataRows.forEach(row => {
-                const fieldName = row[2].trim(); // C列：分野名
-                const tagsField = row[3] || '';  // D列：ジャンル（タグ）
-                const btnHtml = `<button type="button" class="field-btn" onclick="selectField('${fieldName}')">${fieldName}</button> `;
+                const firstA = parseInt(String(a[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+                const firstB = parseInt(String(b[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+                const secondA = parseInt(String(a[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+                const secondB = parseInt(String(b[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
                 
-                let hasMainTag = false; 
-
-                // ジャンルタグ（D列）の文字列に含まれるキーワードに応じてボタンを各エリアに配置
-                if (tagsField.includes('物理') && areaPhysics) {
-                    areaPhysics.insertAdjacentHTML('beforeend', btnHtml);
-                    hasMainTag = true;
+                if (firstB !== firstA) {
+                    return firstB - firstA; // 第1希望で比較
                 }
-                if (tagsField.includes('数学') && areaMath) {
-                    areaMath.insertAdjacentHTML('beforeend', btnHtml);
-                    hasMainTag = true;
-                }
-                if ((tagsField.includes('化学') || tagsField.includes('生物')) && areaChemBio) {
-                    areaChemBio.insertAdjacentHTML('beforeend', btnHtml);
-                    hasMainTag = true;
-                }
-                // 特定タグにヒットしない場合や「その他」の場合は「その他」アコーディオンへ配置
-                if ((tagsField.includes('その他') || !hasMainTag) && areaOther) {
-                    areaOther.insertAdjacentHTML('beforeend', btnHtml);
-                }
+                return secondB - secondA;   // 同数なら第2希望で比較
             });
 
-            // 💡 抽出したデータを保存して1ページ目を描画
-            window.zemiDataRows = dataRows;
-            renderZemiPage(1);
+        // 💡 質問2のフォーム用のボタン生成
+        dataRows.forEach(row => {
+            const fieldName = row[2].trim();
+            const tagsField = row[3] || ''; // D列(row[3])をジャンルとして判定
+            const btnHtml = `<button type="button" class="field-btn" onclick="selectField('${fieldName}')">${fieldName}</button> `;
+            
+            let hasMainTag = false; 
 
-        })
+            if (tagsField.includes('物理') && areaPhysics) {
+                areaPhysics.insertAdjacentHTML('beforeend', btnHtml);
+                hasMainTag = true;
+            }
+            if (tagsField.includes('数学') && areaMath) {
+                areaMath.insertAdjacentHTML('beforeend', btnHtml);
+                hasMainTag = true;
+            }
+            if ((tagsField.includes('化学') || tagsField.includes('生物')) && areaChemBio) {
+                areaChemBio.insertAdjacentHTML('beforeend', btnHtml);
+                hasMainTag = true;
+            }
+            if ((tagsField.includes('その他') || !hasMainTag) && areaOther) {
+                areaOther.insertAdjacentHTML('beforeend', btnHtml);
+            }
+        });
+
+        window.zemiDataRows = dataRows;
+        renderZemiPage(1);
+    })
+     
         .catch(error => {
             console.error('Error:', error);
             container.innerHTML = '<p style="text-align: center; color: #cecece;">データの読み込みに失敗しました。</p>';
@@ -106,10 +95,10 @@ window.renderZemiPage = function(page) {
     const container = document.getElementById('zemi-results-container');
     if (!container || !window.zemiDataRows) return;
 
-    const itemsPerPage = 10; // 1ページあたりの表示数
+    const itemsPerPage = 10; // 💡 1ページあたりの表示数（10個）
     const totalPages = Math.ceil(window.zemiDataRows.length / itemsPerPage) || 1;
 
-    // ページ番号の補正
+    // ページ番号が範囲外にならないように補正
     if (page < 1) page = 1;
     if (page > totalPages) page = totalPages;
 
@@ -123,20 +112,23 @@ window.renderZemiPage = function(page) {
     }
 
     let html = '';
-    let paginationHtml = ''; 
+    let paginationHtml = ''; // 上下で使い回すために変数を外に出します
 
-    // 💡 ページネーションUI生成
+    // 💡 ページネーション（前へ・次へボタン）の生成
     if (totalPages > 1) {
         paginationHtml += '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 1.5rem;">';
         
+        // 前へボタン
         if (page > 1) {
             paginationHtml += `<button onclick="renderZemiPage(${page - 1})" style="background: #555; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.95rem;">&lt; 前へ</button>`;
         } else {
             paginationHtml += `<button style="background: #333; color: #777; border: none; padding: 8px 16px; border-radius: 4px; cursor: not-allowed; font-weight: bold; font-size: 0.95rem;" disabled>&lt; 前へ</button>`;
         }
 
+        // 現在のページ / 全ページ
         paginationHtml += `<span style="color: #cecece; font-weight: bold; font-size: 1.1rem;">${page} / ${totalPages}</span>`;
 
+        // 次へボタン
         if (page < totalPages) {
             paginationHtml += `<button onclick="renderZemiPage(${page + 1})" style="background: #555; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.95rem;">次へ &gt;</button>`;
         } else {
@@ -144,60 +136,54 @@ window.renderZemiPage = function(page) {
         }
 
         paginationHtml += '</div>';
-        html += paginationHtml; 
+        html += paginationHtml; // 💡カード一覧の「上」にHTMLを追加する
     }
 
     html += '<div class="zemi-grid-container">';
 
-    // 💡【ゼミ班カード一覧の個別HTML生成】
-    pageData.forEach(row => {
-        // C列(row[2])：分野名
-        const fieldName = row[2] ? row[2].trim() : '';
+pageData.forEach(row => {
+    const fieldName = row[2] ? row[2].trim() : '';
+    // 数値変換処理を安全に実施
+    const first = parseInt(String(row[5]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+    const second = parseInt(String(row[6]).replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
+    
+    let description = (row[4] || '').trim();
+    if (description === '' || description === '#N/A') {
+        description = '概要はまだありません。';
+    }
 
-        // F列(row[5])：第1希望人数 & G列(row[6])：第2希望人数（数値変換）
-        const first = parseInt(String(row[5] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-        const second = parseInt(String(row[6] || '').replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0)), 10) || 0;
-        
-        // E列(row[4])：概要
-        let description = (row[4] || '').trim();
-        if (description === '' || description === '#N/A') {
-            description = '概要はまだありません。';
-        }
+    let borderColor = '#555'; 
+    let badgeHtml = '';
 
-        // 第1希望の人数に応じた条件分岐（枠線の色とバッジの付与）
-        let borderColor = '#555'; 
-        let badgeHtml = '';
+    if (first >= 4) {
+        borderColor = '#ff6b6b'; 
+        badgeHtml = '<span style="background: #ff6b6b; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">班成立！</span>';
+    } else if (first >= 3) {
+        borderColor = '#91b825'; 
+        badgeHtml = '<span style="background: #91b825; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">もう少し！</span>';
+    }
 
-        if (first >= 4) {
-            borderColor = '#ff6b6b'; 
-            badgeHtml = '<span style="background: #ff6b6b; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">班成立！</span>';
-        } else if (first >= 3) {
-            borderColor = '#91b825'; 
-            badgeHtml = '<span style="background: #91b825; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">もう少し！</span>';
-        }
+    html += `
+    <div class="zemi-card-sp" style="background: rgba(255,255,255,0.05); border: 2px solid ${borderColor}; border-radius: 8px; padding: 1rem; height: 100%; box-sizing: border-box;">
+        <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #fff;">
+            ${fieldName} ${badgeHtml}
+        </h3>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
+            <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
+            <span style="background: #999; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第2希望: ${second}人</span>
+        </div>
+        <details style="background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px;">
+            <summary style="cursor: pointer; font-weight: bold; color: #cecece; font-size: 0.9rem; outline: none;">概要を見る</summary>
+            <p style="margin-top: 0.5rem; margin-bottom: 0; color: #bbb; font-size: 0.85rem; line-height: 1.5;">
+                ${description.replace(/\n/g, '<br>')}
+            </p>
+        </details>
+    </div>`;
+});
 
-        // カード全体のHTML構成
-        html += `
-        <div class="zemi-card-sp" style="background: rgba(255,255,255,0.05); border: 2px solid ${borderColor}; border-radius: 8px; padding: 1rem; height: 100%; box-sizing: border-box;">
-            <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #fff;">
-                ${fieldName} ${badgeHtml}
-            </h3>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                <!-- 人数の反映表示部分 -->
-                <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
-                <span style="background: #999; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第2希望: ${second}人</span>
-            </div>
-            <details style="background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px;">
-                <summary style="cursor: pointer; font-weight: bold; color: #cecece; font-size: 0.9rem; outline: none;">概要を見る</summary>
-                <p style="margin-top: 0.5rem; margin-bottom: 0; color: #bbb; font-size: 0.85rem; line-height: 1.5;">
-                    ${description.replace(/\n/g, '<br>')}
-                </p>
-            </details>
-        </div>`;
-    });
+    html += '</div>'; // グリッドの終了
 
-    html += '</div>';
-
+    // 💡カード一覧の「下」にも同じボタンを追加する（余白設定だけ調整）
     if (totalPages > 1) {
         html += paginationHtml.replace('margin-bottom: 1.5rem;', 'margin-top: 1.5rem; margin-bottom: 0;');
     }
@@ -229,7 +215,7 @@ function parseCSV(str) {
     return result;
 }
 
-// ゼミ班アコーディオン
+// ゼミ班アコーディオン（仕様として残しておきます）
 function setupAccordion(headerClass, itemClass, contentClass) {
   document.querySelectorAll(headerClass).forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -255,36 +241,33 @@ function setupAccordion(headerClass, itemClass, contentClass) {
 setupAccordion('.accordion-header', '.accordion-item', '.accordion-content');
 setupAccordion('.accordion-header-sp', '.accordion-item-sp', '.accordion-content-sp');
 
-
 /* =========================================================
    新システム（提案＆希望選択フォーム）の処理
 ========================================================= */
-// 💡 ユーザーが選択した第1希望・第2希望の分野名を保持する変数
 let kibou1 = "";
 let kibou2 = "";
 
-// 💡 自分が「質問1」で入力・提案した分野が、第1希望/第2希望として選択されているかを管理するフラグ
+// 💡 追加：自動連動用のフラグ変数
 let isKibou1Proposal = false;
 let isKibou2Proposal = false;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 💡 [質問1] 提案分野名の入力欄を取得し、文字が入力されるたびにボタン表示・選択状態を更新するイベントを設定
   const inputBunya = document.getElementById("input-bunya");
   if (inputBunya) {
     inputBunya.addEventListener("input", updateProposalButton);
   }
 
-  // 💡 「自分が提案した分野を選ぶ」ボタンのクリック処理を設定
+  // 💡 HTML側の onclick ではなく、JS側で「自分が提案したフラグ」付きのクリック処理を設定する
   const btnMyProposal = document.getElementById("btn-my-proposal");
   if (btnMyProposal) {
-    btnMyProposal.removeAttribute("onclick"); // HTML側の既存onclick処理を解除
+    btnMyProposal.removeAttribute("onclick");
     btnMyProposal.addEventListener("click", () => {
       const val = document.getElementById("input-bunya").value.trim();
-      selectField(val, true); // true = 自分が提案した分野経由での選択であることを記録
+      selectField(val, true); // true = 自分が提案した分野であることを示す
     });
   }
 
-  // 💡 送信前チェックが必要な必須入力項目（興味度・X宣伝・知った経由・その他の詳細）を監視設定
+  // 必須項目のリアルタイム監視設定
   const requiredIds = ["input-kyomi", "input-x", "input-route", "input-route-other"];
   requiredIds.forEach(id => {
     const el = document.getElementById(id);
@@ -294,11 +277,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 💡 ページ読み込み時に初期状態（必須項目が埋まるまで送信ボタンを非活性化）にする
+  // 初回起動時にボタンをグレーアウト状態にしておく
   checkRequiredFields();
 });
 
-// 💡 必須項目がすべて入力されているかを判定し、送信ボタンの有効化/無効化を切り替える関数
+// 必須項目がすべて埋まっているか判定する関数
 function checkRequiredFields() {
   const kyomi = document.getElementById("input-kyomi") ? document.getElementById("input-kyomi").value.trim() : "";
   const xSend = document.getElementById("input-x") ? document.getElementById("input-x").value.trim() : "";
@@ -306,18 +289,17 @@ function checkRequiredFields() {
   
   let isValid = true;
   
-  // 必須選択肢が未選択の場合は送信不可（false）にする
+  // 未入力の項目があれば false（不可）にする
   if (kyomi === "") isValid = false;
   if (xSend === "") isValid = false;
   if (route === "") isValid = false;
 
-  // 「知ったきっかけ」で「その他」を選んでいる場合、具体的な入力欄が空なら送信不可にする
+  // もし「その他」を選んでいるのに、その他の詳細欄が空っぽなら false
   if (route === "その他") {
       const routeOther = document.getElementById("input-route-other") ? document.getElementById("input-route-other").value.trim() : "";
       if (routeOther === "") isValid = false;
   }
 
-  // 条件を満たしていれば「送信画面に進む」ボタンを活性化（クリック可能化）
   const submitBtn = document.getElementById("submit-form-btn");
   if (submitBtn) {
     if (isValid) {
@@ -332,14 +314,13 @@ function checkRequiredFields() {
   }
 }
 
-// 💡 質問1に文字が入力された際、「自分が提案した分野を選ぶ」ボタンのテキストをリアルタイム更新する関数
+// 💡 提案分野が入力されたら、ジャンル選択・概要入力欄を表示し、かつ連動させる処理
 function updateProposalButton() {
   const val = document.getElementById("input-bunya").value.trim();
   const btn = document.getElementById("btn-my-proposal");
   const hiddenArea = document.getElementById("hidden-proposal-area"); 
 
   if (val) {
-    // 入力がある場合：ボタンを有効化し、追加入力エリア（ジャンル選択・概要）を表示
     if (btn) {
       btn.innerText = `「${val}」を希望に設定する`;
       btn.disabled = false;
@@ -348,7 +329,6 @@ function updateProposalButton() {
       hiddenArea.style.display = "block";
     }
   } else {
-    // 入力がない場合：ボタンを無効化し、追加入力エリアを非表示にする
     if (btn) {
       btn.innerText = "（質問1を入力してください）";
       btn.disabled = true;
@@ -358,7 +338,7 @@ function updateProposalButton() {
     }
   }
 
-  // 💡 提案入力欄の文字を変更した際、すでに「自分の提案分野」として希望選択済みの場合は選択テキストも自動連動更新する
+  // 💡 追加：「自分が提案した分野」が希望として選ばれている場合、入力を自動反映させる
   let changed = false;
   if (isKibou1Proposal) {
     kibou1 = val;
@@ -373,41 +353,37 @@ function updateProposalButton() {
   }
 }
 
-// 💡 ゼミ一覧の各ボタンや「自分が提案した分野」ボタンをクリックした時に希望分野としてセットする関数
+// 💡 追加：第2引数(isProposal)で、提案ボタンから選ばれたか判定できるように修正
 function selectField(fieldName, isProposal = false) {
   if (!fieldName || fieldName.trim() === "") return;
   fieldName = fieldName.trim();
 
   if (!kibou1) {
-    // 第1希望が未選択なら第1希望にセット
     kibou1 = fieldName;
-    isKibou1Proposal = isProposal; // 提案ボタンからの選択かフラグを記録
+    isKibou1Proposal = isProposal; // 第1希望が提案ボタン経由か記録
   } else if (!kibou2 && kibou1 !== fieldName) {
-    // 第1希望と異なり、第2希望が未選択なら第2希望にセット
     kibou2 = fieldName;
-    isKibou2Proposal = isProposal; // 提案ボタンからの選択かフラグを記録
+    isKibou2Proposal = isProposal; // 第2希望が提案ボタン経由か記録
   } else if (kibou1 === fieldName || kibou2 === fieldName) {
     alert("その分野はすでに選択されています。");
   } else {
     alert("すでに第2希望まで選択されています。「選び直す」を押して解除してください。");
   }
-  updateDisplay(); // 画面上の選択状況表示を更新
+  updateDisplay();
 }
 
-// 💡 選択した希望分野を取り消す（選び直す）処理
 function clearField(num) {
   if (num === 1) {
     kibou1 = "";
-    isKibou1Proposal = false; // 連動解除
+    isKibou1Proposal = false; // 💡 選び直した場合は連動を解除
   }
   if (num === 2) {
     kibou2 = "";
-    isKibou2Proposal = false; // 連動解除
+    isKibou2Proposal = false; // 💡 選び直した場合は連動を解除
   }
   updateDisplay();
 }
 
-// 💡 画面下の「選択状況ボックス（第1希望：〇〇 / 第2希望：〇〇）」の表示を更新する関数
 function updateDisplay() {
   const disp1 = document.getElementById("disp-kibou1");
   const disp2 = document.getElementById("disp-kibou2");
@@ -415,7 +391,6 @@ function updateDisplay() {
   if (disp2) disp2.innerText = kibou2 || "未選択";
 }
 
-// 💡 Xでの宣伝で「宣伝する」を選んだ場合のみ、追加説明のテキストエリアを表示させる関数
 function toggleXDetail() {
   const xVal = document.getElementById("input-x").value;
   const detailBox = document.getElementById("x-detail-box");
@@ -423,7 +398,6 @@ function toggleXDetail() {
   checkRequiredFields(); 
 }
 
-// 💡 知ったきっかけで「その他」を選んだ場合のみ、具体的な入力欄を表示させる関数
 function toggleRouteOther() {
   const routeVal = document.getElementById("input-route").value;
   const routeOther = document.getElementById("input-route-other");
@@ -431,7 +405,6 @@ function toggleRouteOther() {
   checkRequiredFields(); 
 }
 
-// 💡 Webページの入力内容をGoogleフォームの事前入力パラメータ（Prefill URL）へ埋め込み、新しいタブでフォームを開く関数
 function openGoogleForm() {
   const bunya = document.getElementById("input-bunya") ? document.getElementById("input-bunya").value : "";
   const genre = document.getElementById("input-genre") ? document.getElementById("input-genre").value : ""; 
@@ -446,10 +419,8 @@ function openGoogleForm() {
     route = document.getElementById("input-route-other") ? document.getElementById("input-route-other").value : "";
   }
 
-  // 💡 各項目を埋め込む対象のGoogleフォームのベースURL（entry.XXXXX が各設問に対応）
   let targetUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc1c_nhPMIGUI0cu3LWzOjzSo6dVhDmn-MGO1FgJJ-fh7Vitg/viewform?usp=pp_url&entry.669942318=+DUMMY_BUNYA&entry.930125208=+DUMMY_GENRE&entry.2097477009=+DUMMY_GAIYOU&entry.1542851026=+DUMMY_KIBOU1&entry.45651459=+DUMMY_KIBOU2&entry.45918589=+DUMMY_KYOMI&entry.1192163566=+DUMMY_X&entry.2036668219=+DUMMY_XDETAIL&entry.375378926=+DUMMY_ROUTE&entry.405628407=+DUMMY_FREE";
 
-  // 💡 ダミー文字列を入力・選択された値にURLエンコード（特殊文字・日本語対策）を行って置換
   targetUrl = targetUrl.replace("DUMMY_BUNYA", encodeURIComponent(bunya));
   targetUrl = targetUrl.replace("DUMMY_GENRE", encodeURIComponent(genre)); 
   targetUrl = targetUrl.replace("DUMMY_GAIYOU", encodeURIComponent(gaiyou));
@@ -461,11 +432,9 @@ function openGoogleForm() {
   targetUrl = targetUrl.replace("DUMMY_ROUTE", encodeURIComponent(route));
   targetUrl = targetUrl.replace("DUMMY_FREE", encodeURIComponent(free));
 
-  // 別タブで送信用Googleフォームを開く
   window.open(targetUrl, "_blank");
 }
 
-// 💡 「希望調査フォームを開く」ボタンを押した際に非表示状態のフォームエリアを展開してスムーズスクロールする関数
 function showProposalForm() {
   const formArea = document.getElementById("proposal-form-area");
   if (formArea) {
