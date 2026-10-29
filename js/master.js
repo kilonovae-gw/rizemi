@@ -141,11 +141,11 @@ window.renderZemiPage = function(page) {
     html += '<div class="zemi-grid-container">';
 
     pageData.forEach(row => {
-        const fieldName = row[2];
-        const first = Number(row[5]) || 0;
-        const second = Number(row[6]) || 0;
+        const fieldName = row[0];
+        const first = Number(row[1]) || 0;
+        const second = Number(row[2]) || 0;
         
-        let description = (row[4] || '').trim();
+        let description = (row[3] || '').trim();
         if (description === '' || description === '#N/A') {
             description = '概要はまだありません。';
         }
