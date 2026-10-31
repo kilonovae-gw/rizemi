@@ -417,7 +417,7 @@ function openGoogleForm() {
     route = document.getElementById("input-route-other") ? document.getElementById("input-route-other").value : "";
   }
 
-  let targetUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc1c_nhPMIGUI0cu3LWzOjzSo6dVhDmn-MGO1FgJJ-fh7Vitg/viewform?usp=pp_url&entry.669942318=+DUMMY_BUNYA&entry.930125208=+DUMMY_GENRE&entry.2097477009=+DUMMY_GAIYOU&entry.1542851026=+DUMMY_KIBOU1&entry.45651459=+DUMMY_KIBOU2&entry.45918589=+DUMMY_KYOMI&entry.1192163566=+DUMMY_X&entry.2036668219=+DUMMY_XDETAIL&entry.375378926=+DUMMY_ROUTE&entry.405628407=+DUMMY_FREE";
+  let targetUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc1c_nhPMIGUI0cu3LWzOjzSo6dVhDmn-MGO1FgJJ-fh7Vitg/viewform?usp=pp_url&entry.669942318=DUMMY_BUNYA&entry.930125208=DUMMY_GENRE&entry.2097477009=DUMMY_GAIYO&entry.1542851026=DUMMY_KIBOU1&entry.45651459=DUMMY_KIBOU2&entry.45918589=DUMMY_KYOMI&entry.1192163566=DUMMY_X&entry.2036668219=DUMMY_XDETAIL&entry.375378926=DUMMY_ROUTE&entry.405628407=DUMMY_FREE";
 
   targetUrl = targetUrl.replace("DUMMY_BUNYA", encodeURIComponent(bunya));
   targetUrl = targetUrl.replace("DUMMY_GENRE", encodeURIComponent(genre)); 
