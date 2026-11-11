@@ -1544,38 +1544,51 @@ body.r6-sp .top-sp a:hover {
 
 /* ファイルの一番最後（.my-proposal-box .proposal-btn:disabled の下）に追加 */
 
-/* =========================================
-   「ゼミ班調査中」吹き出しの追加スタイル
-========================================= */
-.balloon-speech {
+/* ナビゲーション用の吹き出しスタイル */
+.top-nav-item {
     position: relative;
-    display: inline-block;
-    margin-bottom: 8px;
-    padding: 6px 16px;
-    background: #C0A313; /* テーマカラーに合わせたゴールド系 */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 既存の区切り線（::after）の位置調整 */
+.top-sp .top-nav-item::after {
+    content: "";
+    position: absolute;
+    top: 15%;
+    right: 0;
+    width: 1px;
+    height: 70%;
+    background: #fff;
+    opacity: 0.4;
+}
+
+.balloon-speech-small {
+    position: absolute;
+    top: -22px; /* 位置の上下調整 */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #C0A313; /* テーマカラーの黄色 */
     color: #000;
     font-weight: bold;
-    font-size: 0.85rem;
-    border-radius: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    animation: bounce 2s infinite; /* さりげない浮遊アニメーション */
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    animation: bounce 2s infinite;
 }
 
 /* 吹き出しの下三角（しっぽ） */
-.balloon-speech::after {
+.balloon-speech-small::after {
     content: "";
     position: absolute;
-    bottom: -8px;
+    bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
     border-style: solid;
-    border-width: 8px 6px 0 6px;
+    border-width: 5px 4px 0 4px;
     border-color: #C0A313 transparent transparent transparent;
-}
-
-/* ぴょこぴょこ動くアニメーション */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-5px); }
-    60% { transform: translateY(-2px); }
 }
