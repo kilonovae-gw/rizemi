@@ -57,7 +57,7 @@ img {
     transition: .5s;
 }
 .btn:hover {
-    background-color: #C8A978;
+    background-color: #cc0000;
 }
 
 /* =========================================
@@ -1227,7 +1227,7 @@ body.r6-sp .page-header-sp .logo-btm {
 /* 特設ページのロゴを光らせる（縁取り） */
 body.r6-sp .page-header-sp .logo {
     border-radius: 50%;
-    box-shadow: 0 0 12px rgba(204, 255, 0, 0.7); 
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.7); 
     background-color: #ffffff; /* ロゴの内側が透過している場合の対策 */
 }
 
@@ -1337,7 +1337,7 @@ body.r6-sp .top-sp a:hover {
 .form-section textarea:focus {
     border-color: #ff0000;
     outline: none;
-    box-shadow: 0 0 8px rgba(192, 163, 19, 0.4);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
 /* ラベルテキストの視認性向上 */
@@ -1437,7 +1437,7 @@ body.r6-sp .top-sp a:hover {
     border-radius: 50px; /* カプセル型で押しやすい形状に */
     
     /* 💡 クッキリ浮かび上がる発光風の影 */
-    box-shadow: 0 4px 20px rgba(255, 224, 51, 0.5);
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.6);
     cursor: pointer;
 }
    /* 💡「選び直す」ボタンの基本色設定 */
