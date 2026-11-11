@@ -49,7 +49,7 @@ img {
 .btn {
     display: inline-block;
     font-size: 1.5rem;
-    background-color: #C0A313;
+    background-color: #ff0000;
     color: #fff;
     border-radius: 8px;
     padding: .75rem 1.5rem;
@@ -292,7 +292,7 @@ body.r6-sp {
     color: #e3acae;
 }
 .detail-sp a:hover {
-    color: #C0A313;
+    color: #ff0000;
 }
 
 /* ゼミ班共通 */
@@ -1221,7 +1221,7 @@ body.r6-sp {
 body.r6-sp .page-header-sp a,
 body.r6-sp .page-header-sp .logo-top,
 body.r6-sp .page-header-sp .logo-btm {
-    color: #ccff00 !important; /* 💡白から蛍光グリーンへ */
+    color: #ff000 !important; /* 白から赤へ */
 }
 
 /* 特設ページのロゴを光らせる（縁取り） */
@@ -1233,7 +1233,7 @@ body.r6-sp .page-header-sp .logo {
 
 /* 三本線 */
 body.r6-sp .menu_line {
-    background: #ccff00 !important; /* 💡ここも蛍光グリーンへ */
+    background: #ff000 !important; /* 💡ここも赤へ */
 }
 
 /* INFO・ゼミ班・EVENTリンクのホバー色 */
@@ -1298,7 +1298,7 @@ body.r6-sp .top-sp a:hover {
 .form-section {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid #333;
-    border-left: 4px solid #C0A313; /* 見出し横にアクセントカラー */
+    border-left: 4px solid #ff0000; /* 見出し横にアクセントカラー */
     border-radius: 8px;
     padding: 1.2rem;
     margin-bottom: 2rem;
@@ -1335,7 +1335,7 @@ body.r6-sp .top-sp a:hover {
 .form-section input[type="text"]:focus,
 .form-section select:focus,
 .form-section textarea:focus {
-    border-color: #C0A313;
+    border-color: #ff0000;
     outline: none;
     box-shadow: 0 0 8px rgba(192, 163, 19, 0.4);
 }
@@ -1361,9 +1361,9 @@ body.r6-sp .top-sp a:hover {
 }
 
 .field-btn:hover {
-    background: #C0A313;
+    background: #ff0000;
     color: #000;
-    border-color: #C0A313;
+    border-color: #ff0000;
 }
 
 /* ジャンル選択ボタンの基本スタイル */
@@ -1382,25 +1382,25 @@ body.r6-sp .top-sp a:hover {
 
 /* 💡 選択されたジャンルボタン（目立たせるデザイン） */
 .field-btn.genre-btn.active {
-    background: #ccff00 !important; /* 鮮やかなネオンイエロー */
+    background: #ff000 !important; /* 鮮やかなネオンイエロー */
     color: #000000 !important;      /* 文字を濃い黒にして視認性を高める */
-    border-color: #ccff00 !important;
+    border-color: #ff000 !important;
     font-weight: bold;
-    box-shadow: 0 0 12px rgba(204, 255, 0, 0.6); /* 発光風の影で選択状態を強調 */
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.7); /* 発光風の影で選択状態を強調 */
     transform: scale(1.05); /* 少し拡大させて選択感を演出 */
 }
 
 /* ホバー時の挙動（未選択時） */
 .field-btn.genre-btn:hover:not(.active) {
-    background: #C0A313;
+    background: #ff0000;
     color: #000;
-    border-color: #C0A313;
+    border-color: #ff0000;
 }
 
 /* 選択状況確認ボックス */
 .status-box {
     background: rgba(0, 0, 0, 0.3);
-    border: 1px dashed #C0A313;
+    border: 1px dashed #ff0000;
     border-radius: 8px;
     padding: 1rem;
     margin-top: 1.5rem;
@@ -1408,7 +1408,7 @@ body.r6-sp .top-sp a:hover {
 }
 
 .status-box span {
-    color: #ccff00; /* 選択内容を強調 */
+    color: #ff00000; /* 選択内容を強調 */
     font-weight: bold;
 }
 
@@ -1471,7 +1471,7 @@ body.r6-sp .top-sp a:hover {
 
 /* 開いている状態の枠線を強調 */
 .form-section details[open] {
-    border-color: #C0A313;                   /* テーマカラーのゴールド枠に */
+    border-color: #ff0000;                   /* テーマカラーのゴールド枠に */
     background: rgba(255, 255, 255, 0.08);
 }
 
@@ -1504,7 +1504,7 @@ body.r6-sp .top-sp a:hover {
 .my-proposal-box {
     background: rgba(255, 255, 255, 0.04);  /* うっすらと明るい背景 */
     border: 1px solid #55555d;               /* クッキリとした枠線 */
-    border-left: 4px solid #ccff00;          /* アクセントカラー（アクセント枠） */
+    border-left: 4px solid #ff0000;          /* アクセントカラー（アクセント枠） */
     border-radius: 8px;                      /* 角丸 */
     padding: 1rem 1.2rem;                    /* 内側の余白 */
     margin-bottom: 1.5rem;                   /* 下のジャンル枠とのすき間 */
