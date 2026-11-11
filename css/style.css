@@ -1382,9 +1382,10 @@ body.r6-sp .top-sp a:hover {
 
 /* 💡 選択されたジャンルボタン（目立たせるデザイン） */
 .field-btn.genre-btn.active {
-    background: #ff000 !important; /* 鮮やかなネオンイエロー */
+    background: #ff0000
+       !important; /* 鮮やかなネオンイエロー */
     color: #000000 !important;      /* 文字を濃い黒にして視認性を高める */
-    border-color: #ff000 !important;
+    border-color: #ff0000 !important;
     font-weight: bold;
     box-shadow: 0 0 12px rgba(255, 0, 0, 0.7); /* 発光風の影で選択状態を強調 */
     transform: scale(1.05); /* 少し拡大させて選択感を演出 */
@@ -1408,7 +1409,7 @@ body.r6-sp .top-sp a:hover {
 }
 
 .status-box span {
-    color: #ff00000; /* 選択内容を強調 */
+    color: #ff0000; /* 選択内容を強調 */
     font-weight: bold;
 }
 
