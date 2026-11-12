@@ -1262,11 +1262,20 @@ body.r6-sp {
    特設ページ（ライトモード・#8C1C28）専用の強制上書きデザイン
 ========================================================= */
 
-/* 特設ヘッダーの文字 */
+/* 特設ヘッダーの文字（通常時） */
 body.r6-sp .page-header-sp a,
 body.r6-sp .page-header-sp .logo-top,
 body.r6-sp .page-header-sp .logo-btm {
     color: #222222 !important;
+    transition: color 0.3s ease;
+}
+
+/* 💡 一番上のヘッダー（ロゴ・メニュー）にカーソルを置いた時の色変更 */
+body.r6-sp .page-header-sp a:hover,
+body.r6-sp .page-header-sp a:hover .logo-top,
+body.r6-sp .page-header-sp a:hover .logo-btm,
+body.r6-sp .main-nav-sp a:hover {
+    color: #8C1C28 !important;
 }
 
 /* 特設ページのロゴの縁取り */
@@ -1274,6 +1283,12 @@ body.r6-sp .page-header-sp .logo {
     border-radius: 50%;
     box-shadow: 0 2px 8px rgba(140, 28, 40, 0.25); 
     background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ロゴにカーソルを置いた時に少し強調する演出（不要なら削除可） */
+body.r6-sp .page-header-sp a:hover .logo {
+    box-shadow: 0 4px 12px rgba(140, 28, 40, 0.45);
 }
 
 /* 三本線 */
@@ -1286,7 +1301,6 @@ body.r6-sp .top-sp a:hover,
 body.r6-sp .top-sp .top-nav-item a:hover {
     color: #8C1C28 !important;
 }
-
 
 /* =========================================================
    特設ページ トップ画像レイアウト
