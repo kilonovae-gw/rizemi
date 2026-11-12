@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('zemi-results-container');
     if(!container) return;
 
-    container.innerHTML = '<p style="text-align: center; color: #cecece;">現在の希望状況を読み込んでいます...</p>';
+    // 💡 文字色をライトモード用の濃色（#555555）に変更
+    container.innerHTML = '<p style="text-align: center; color: #555555;">現在の希望状況を読み込んでいます...</p>';
 
     const areaPhysics = document.getElementById('area-physics');
     const areaMath = document.getElementById('area-math');
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(csvText => {
             const allRows = parseCSV(csvText);
             
-            // 💡ここで「第1希望順 → 第2希望順」の辞書式ソートを行います
+            // 💡「第1希望順 → 第2希望順」の辞書式ソート
             const dataRows = allRows.slice(1)
                 .filter(row => row[0]) 
                 .sort((a, b) => {
@@ -48,12 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const secondB = Number(b[2]) || 0;
                     
                     if (firstB !== firstA) {
-                        return firstB - firstA; // 第1希望で比較
+                        return firstB - firstA;
                     }
-                    return secondB - secondA;   // 同数なら第2希望で比較
+                    return secondB - secondA;
                 });
 
-            // 💡 質問2のフォーム用のボタン生成（全件一括で実行）
+            // 💡 質問2のフォーム用のボタン生成
             dataRows.forEach(row => {
                 const fieldName = row[0];
                 const tagsField = row[4] || '';
@@ -78,26 +79,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // 💡 ページネーション（ページ切り替え）用にデータを保存して1ページ目を描画
             window.zemiDataRows = dataRows;
             renderZemiPage(1);
 
         })
         .catch(error => {
             console.error('Error:', error);
-            container.innerHTML = '<p style="text-align: center; color: #cecece;">データの読み込みに失敗しました。</p>';
+            container.innerHTML = '<p style="text-align: center; color: #8C1C28;">データの読み込みに失敗しました。</p>';
         });
 });
 
-// 💡 指定したページ番号のゼミ一覧を描画する関数
+// 💡 指定したページ番号のゼミ一覧を描画する関数（ライトモード＆#8C1C28対応）
 window.renderZemiPage = function(page) {
     const container = document.getElementById('zemi-results-container');
     if (!container || !window.zemiDataRows) return;
 
-    const itemsPerPage = 10; // 💡 1ページあたりの表示数（10個）
+    const itemsPerPage = 10;
     const totalPages = Math.ceil(window.zemiDataRows.length / itemsPerPage) || 1;
 
-    // ページ番号が範囲外にならないように補正
     if (page < 1) page = 1;
     if (page > totalPages) page = totalPages;
 
@@ -106,36 +105,33 @@ window.renderZemiPage = function(page) {
     const pageData = window.zemiDataRows.slice(startIndex, endIndex);
 
     if (window.zemiDataRows.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #cecece;">現在、希望分野はまだありません。</p>';
+        container.innerHTML = '<p style="text-align: center; color: #555555;">現在、希望分野はまだありません。</p>';
         return;
     }
 
     let html = '';
-    let paginationHtml = ''; // 上下で使い回すために変数を外に出します
+    let paginationHtml = '';
 
-    // 💡 ページネーション（前へ・次へボタン）の生成
+    // 💡 ページネーション（前へ・次へボタン）の生成（テーマカラー #8C1C28 対応）
     if (totalPages > 1) {
         paginationHtml += '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 1.5rem;">';
         
-        // 前へボタン
         if (page > 1) {
-            paginationHtml += `<button onclick="renderZemiPage(${page - 1})" style="background: #555; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.95rem;">&lt; 前へ</button>`;
+            paginationHtml += `<button onclick="renderZemiPage(${page - 1})" style="background: #8C1C28; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.95rem;">&lt; 前へ</button>`;
         } else {
-            paginationHtml += `<button style="background: #333; color: #777; border: none; padding: 8px 16px; border-radius: 4px; cursor: not-allowed; font-weight: bold; font-size: 0.95rem;" disabled>&lt; 前へ</button>`;
+            paginationHtml += `<button style="background: #e0d5d5; color: #888; border: none; padding: 8px 16px; border-radius: 4px; cursor: not-allowed; font-weight: bold; font-size: 0.95rem;" disabled>&lt; 前へ</button>`;
         }
 
-        // 現在のページ / 全ページ
-        paginationHtml += `<span style="color: #cecece; font-weight: bold; font-size: 1.1rem;">${page} / ${totalPages}</span>`;
+        paginationHtml += `<span style="color: #222222; font-weight: bold; font-size: 1.1rem;">${page} / ${totalPages}</span>`;
 
-        // 次へボタン
         if (page < totalPages) {
-            paginationHtml += `<button onclick="renderZemiPage(${page + 1})" style="background: #555; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.95rem;">次へ &gt;</button>`;
+            paginationHtml += `<button onclick="renderZemiPage(${page + 1})" style="background: #8C1C28; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.95rem;">次へ &gt;</button>`;
         } else {
-            paginationHtml += `<button style="background: #333; color: #777; border: none; padding: 8px 16px; border-radius: 4px; cursor: not-allowed; font-weight: bold; font-size: 0.95rem;" disabled>次へ &gt;</button>`;
+            paginationHtml += `<button style="background: #e0d5d5; color: #888; border: none; padding: 8px 16px; border-radius: 4px; cursor: not-allowed; font-weight: bold; font-size: 0.95rem;" disabled>次へ &gt;</button>`;
         }
 
         paginationHtml += '</div>';
-        html += paginationHtml; // 💡カード一覧の「上」にHTMLを追加する
+        html += paginationHtml;
     }
 
     html += '<div class="zemi-grid-container">';
@@ -150,38 +146,38 @@ window.renderZemiPage = function(page) {
             description = '概要はまだありません。';
         }
 
-        let borderColor = '#555'; 
+        // 💡 カード枠線とバッジ色の設定（ライトモード仕様）
+        let borderColor = '#d4caca'; 
         let badgeHtml = '';
 
         if (first >= 4) {
-            borderColor = '#ff6b6b'; 
-            badgeHtml = '<span style="background: #ff6b6b; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">班成立！</span>';
+            borderColor = '#8C1C28'; // 班成立：テーマカラーのワインレッド
+            badgeHtml = '<span style="background: #8C1C28; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">班成立！</span>';
         } else if (first >= 3) {
-            borderColor = '#91b825'; 
-            badgeHtml = '<span style="background: #91b825; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">もう少し！</span>';
+            borderColor = '#d97706'; // もう少し！：白背景でも映える落ち着いたアンバーゴールド
+            badgeHtml = '<span style="background: #d97706; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 0.5rem;">もう少し！</span>';
         }
 
         html += `
-        <div class="zemi-card-sp" style="background: rgba(255,255,255,0.05); border: 2px solid ${borderColor}; border-radius: 8px; padding: 1rem; height: 100%; box-sizing: border-box;">
-            <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #fff;">
+        <div class="zemi-card-sp" style="background: #ffffff; border: 2px solid ${borderColor}; border-radius: 8px; padding: 1rem; height: 100%; box-sizing: border-box; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+            <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #222222;">
                 ${fieldName} ${badgeHtml}
             </h3>
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem;">
-                <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
-                <span style="background: #999; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第2希望: ${second}人</span>
+                <span style="background: rgba(140, 28, 40, 0.12); color: #8C1C28; border: 1px solid rgba(140, 28, 40, 0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
+                <span style="background: #f0ecec; color: #444444; border: 1px solid #d4caca; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第2希望: ${second}人</span>
             </div>
-            <details style="background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px;">
-                <summary style="cursor: pointer; font-weight: bold; color: #cecece; font-size: 0.9rem; outline: none;">概要を見る</summary>
-                <p style="margin-top: 0.5rem; margin-bottom: 0; color: #bbb; font-size: 0.85rem; line-height: 1.5;">
+            <details style="background: #FCF6F6; border: 1px solid #e6dada; padding: 0.5rem; border-radius: 4px;">
+                <summary style="cursor: pointer; font-weight: bold; color: #333333; font-size: 0.9rem; outline: none;">概要を見る</summary>
+                <p style="margin-top: 0.5rem; margin-bottom: 0; color: #444444; font-size: 0.85rem; line-height: 1.5;">
                     ${description.replace(/\n/g, '<br>')}
                 </p>
             </details>
         </div>`;
     });
 
-    html += '</div>'; // グリッドの終了
+    html += '</div>';
 
-    // 💡カード一覧の「下」にも同じボタンを追加する（余白設定だけ調整）
     if (totalPages > 1) {
         html += paginationHtml.replace('margin-bottom: 1.5rem;', 'margin-top: 1.5rem; margin-bottom: 0;');
     }
@@ -245,7 +241,6 @@ setupAccordion('.accordion-header-sp', '.accordion-item-sp', '.accordion-content
 let kibou1 = "";
 let kibou2 = "";
 
-// 💡 追加：自動連動用のフラグ変数
 let isKibou1Proposal = false;
 let isKibou2Proposal = false;
 
@@ -255,17 +250,15 @@ document.addEventListener("DOMContentLoaded", () => {
     inputBunya.addEventListener("input", updateProposalButton);
   }
 
-  // 💡 HTML側の onclick ではなく、JS側で「自分が提案したフラグ」付きのクリック処理を設定する
   const btnMyProposal = document.getElementById("btn-my-proposal");
   if (btnMyProposal) {
     btnMyProposal.removeAttribute("onclick");
     btnMyProposal.addEventListener("click", () => {
       const val = document.getElementById("input-bunya").value.trim();
-      selectField(val, true); // true = 自分が提案した分野であることを示す
+      selectField(val, true);
     });
   }
 
-  // 必須項目のリアルタイム監視設定
   const requiredIds = ["input-kyomi", "input-x", "input-route", "input-route-other"];
   requiredIds.forEach(id => {
     const el = document.getElementById(id);
@@ -275,11 +268,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 初回起動時にボタンをグレーアウト状態にしておく
   checkRequiredFields();
 });
 
-// 必須項目がすべて埋まっているか判定する関数
 function checkRequiredFields() {
   const kyomi = document.getElementById("input-kyomi") ? document.getElementById("input-kyomi").value.trim() : "";
   const xSend = document.getElementById("input-x") ? document.getElementById("input-x").value.trim() : "";
@@ -287,12 +278,10 @@ function checkRequiredFields() {
   
   let isValid = true;
   
-  // 未入力の項目があれば false（不可）にする
   if (kyomi === "") isValid = false;
   if (xSend === "") isValid = false;
   if (route === "") isValid = false;
 
-  // もし「その他」を選んでいるのに、その他の詳細欄が空っぽなら false
   if (route === "その他") {
       const routeOther = document.getElementById("input-route-other") ? document.getElementById("input-route-other").value.trim() : "";
       if (routeOther === "") isValid = false;
@@ -312,7 +301,6 @@ function checkRequiredFields() {
   }
 }
 
-// 💡 提案分野が入力されたら、ジャンル選択・概要入力欄を表示し、かつ連動させる処理
 function updateProposalButton() {
   const val = document.getElementById("input-bunya").value.trim();
   const btn = document.getElementById("btn-my-proposal");
@@ -336,7 +324,6 @@ function updateProposalButton() {
     }
   }
 
-  // 💡 追加：「自分が提案した分野」が希望として選ばれている場合、入力を自動反映させる
   let changed = false;
   if (isKibou1Proposal) {
     kibou1 = val;
@@ -351,17 +338,16 @@ function updateProposalButton() {
   }
 }
 
-// 💡 追加：第2引数(isProposal)で、提案ボタンから選ばれたか判定できるように修正
 function selectField(fieldName, isProposal = false) {
   if (!fieldName || fieldName.trim() === "") return;
   fieldName = fieldName.trim();
 
   if (!kibou1) {
     kibou1 = fieldName;
-    isKibou1Proposal = isProposal; // 第1希望が提案ボタン経由か記録
+    isKibou1Proposal = isProposal;
   } else if (!kibou2 && kibou1 !== fieldName) {
     kibou2 = fieldName;
-    isKibou2Proposal = isProposal; // 第2希望が提案ボタン経由か記録
+    isKibou2Proposal = isProposal;
   } else if (kibou1 === fieldName || kibou2 === fieldName) {
     alert("その分野はすでに選択されています。");
   } else {
@@ -373,11 +359,11 @@ function selectField(fieldName, isProposal = false) {
 function clearField(num) {
   if (num === 1) {
     kibou1 = "";
-    isKibou1Proposal = false; // 💡 選び直した場合は連動を解除
+    isKibou1Proposal = false;
   }
   if (num === 2) {
     kibou2 = "";
-    isKibou2Proposal = false; // 💡 選び直した場合は連動を解除
+    isKibou2Proposal = false;
   }
   updateDisplay();
 }
