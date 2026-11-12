@@ -11,7 +11,6 @@ body {
     font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", sans-serif;
     line-height: 1.7;
     color: black;
-    /* 💡ヘッダーの縦幅を縮めたため、余白も70pxに少し減らしました */
     padding-top: 70px; 
 }
 a {
@@ -30,12 +29,12 @@ img {
     font-family: "AinoteFont", sans-serif;
 }
 .kaisei-opti-regular {
-  font-family: "Kaisei Opti", serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Kaisei Opti", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
-/*レイアウト*/
+/* レイアウト */
 .wrapper {
     max-width: 1120px;
     margin: auto;
@@ -49,7 +48,7 @@ img {
 .btn {
     display: inline-block;
     font-size: 1.5rem;
-    background-color: #ff0000;
+    background-color: #8C1C28;
     color: #fff;
     border-radius: 8px;
     padding: .75rem 1.5rem;
@@ -57,71 +56,71 @@ img {
     transition: .5s;
 }
 .btn:hover {
-    background-color: #cc0000;
+    background-color: #6E151E;
 }
 
 /* =========================================
    特設ページへの誘導（index.html等で使用）
 ========================================= */
 .floating-banner {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  background: #ff0000; /* テーマカラーの赤に変更 */
-  color: #fff;
-  text-decoration: none;
-  padding: 14px 20px;
-  border-radius: 999px;
-  font-weight: bold;
-  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.35); /* 赤に合わせた影 */
-  z-index: 1000;
-  transition: background-color 0.2s, transform 0.2s;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #8C1C28;
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 999px;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(140, 28, 40, 0.35);
+    z-index: 1000;
+    transition: background-color 0.2s, transform 0.2s;
 }
 .floating-banner:hover {
-  background: #cc0000; /* ホバー時は少し濃い赤に */
-  transform: scale(1.05);
+    background: #6E151E;
+    transform: scale(1.05);
 }
 
 .special-banner-bg {
-  display: block;
-  width: 90%;
-  max-width: 1000px;
-  height: 220px;
-  margin: 40px auto 0;
-  background-image: url("../images/5th/5th_4.jpg"); 
-  background-size: cover;
-  background-position: center;
-  border: 2px solid #ff0000; /* テーマカラーの赤枠を追加 */
-  border-radius: 20px;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-  transition: 0.4s ease;
+    display: block;
+    width: 90%;
+    max-width: 1000px;
+    height: 220px;
+    margin: 40px auto 0;
+    background-image: url("../images/5th/5th_4.jpg"); 
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #8C1C28;
+    border-radius: 20px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    transition: 0.4s ease;
 }
 .special-banner-bg:hover {
-  transform: scale(1.02);
-  box-shadow: 0 15px 30px rgba(255, 0, 0, 0.35);
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(140, 28, 40, 0.35);
 }
 .banner-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
 }
 .banner-sub {
-  font-size: 1rem;
-  letter-spacing: 0.15em;
-  opacity: 0.85;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    opacity: 0.85;
 }
 .banner-main {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 
@@ -129,26 +128,26 @@ img {
    特設ページ（共通・スマホベース）
 ========================================= */
 
-/* 本体ダークモード */
+/* 本体ライトモード */
 body.r6-sp {
-    background-color: #121214; 
-    color: #e4e4e7;            
+    background-color: #FCF6F6; 
+    color: #222222;            
 }
 
 /* 特設ヘッダー */
 .page-header-sp {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #c9c2bc;
+    border-bottom: 2px solid #8C1C28;
     position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #121214;
+    background-color: #FCF6F6;
     z-index: 9999;
 }
 .head-sp {
-    display:  flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
 }
@@ -156,21 +155,21 @@ body.r6-sp {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    color: #cecece;
+    color: #222222;
 }
 .head-sp a:hover {
-    color: #2A91D3;
+    color: #8C1C28;
 }
 .main-nav-sp {
     justify-content: center;
     gap: 4rem;
     font-size: 1.5rem;
     list-style: none;
-    background: #77767F;
+    background: #ffffff;
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 10px;
-    border: 2px solid black;
+    border: 2px solid #8C1C28;
     width: 60%;
     padding: 40px 0 0 0;
     margin-top: 0;
@@ -181,13 +180,13 @@ body.r6-sp {
     transition: .5s;
     display: block;
     text-align: center;
-    opacity: 0.97;
+    opacity: 0.98;
 }
 .main-nav-sp a {
-    color: #cecece;
+    color: #222222;
 }
 .main-nav-sp a:hover {
-    color: #2A91D3;
+    color: #8C1C28;
 }
 .main-nav-sp.menu_active {
     right: 0;
@@ -202,7 +201,7 @@ body.r6-sp {
     width: 95%; 
 }
 
-/* サイト内リンク */
+/* サイト内リンク（INFO / ゼミ班 / EVENT） */
 .top-sp {
     margin: 2rem;
     padding: 1rem 0 1rem 0;
@@ -210,31 +209,77 @@ body.r6-sp {
     align-items: center;
     justify-content: space-between;
     font-size: 1rem;
-    border-top: 1px solid #cecece;
-    border-bottom: 1px solid #cecece;
+    border-top: 1px solid #d4caca;
+    border-bottom: 1px solid #d4caca;
+}
+.top-sp > a,
+.top-sp .top-nav-item {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .top-sp a {
-    flex: 1;
+    display: block;
+    width: 100%;
     padding: 1.5rem;
-    align-items: center;
     text-align: center;
     gap: 0.8rem;
-    color: #cecece;
+    color: #222222;
     position: relative;
     transition: 0.3s;
 }
-.top-sp a:not(:last-child)::after {
+.top-sp > a:not(:last-child)::after,
+.top-sp .top-nav-item:not(:last-child)::after {
     content: "";
     position: absolute;
     top: 15%;
     right: 0;
     width: 1px;
     height: 70%;
-    background: #fff;
+    background: #999999;
     opacity: 0.4;
 }
-.top-sp a:hover {
-    color: ##77787b;
+.top-sp a:hover,
+.top-sp .top-nav-item a:hover {
+    color: #8C1C28 !important;
+}
+
+/* ナビゲーション上の吹き出し（影なし・テーマカラー対応） */
+.balloon-speech-small {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #8C1C28;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.82rem;
+    padding: 4px 10px;
+    border-radius: 14px;
+    white-space: nowrap;
+    box-shadow: none;
+    z-index: 10;
+    animation: bounce-strong 1.8s infinite;
+}
+.balloon-speech-small::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px 6px 0;
+    border-style: solid;
+    border-color: #8C1C28 transparent transparent transparent;
+}
+@keyframes bounce-strong {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-5px);
+    }
 }
 
 /* ページ内リンクで飛んだ時にヘッダーに隠れないようにする設定 */
@@ -248,96 +293,98 @@ body.r6-sp {
 
 /* INFORMATION */
 .detail-sp {
-  width: 90%;
-  max-width: 800px;
-  margin: 3rem auto;
-  border-collapse: collapse;
-  position: relative;
-  border-left: 2px solid #cecece;
-  border-bottom: 2px solid #cecece;
-  padding-left: 20px;
+    width: 90%;
+    max-width: 800px;
+    margin: 3rem auto;
+    border-collapse: collapse;
+    position: relative;
+    border-left: 2px solid #8C1C28;
+    border-bottom: 2px solid #8C1C28;
+    padding-left: 20px;
 }
 .detail-sp caption {
-  caption-side: top;
-  text-align: left;
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
-  color: #cecece;
-  position: relative;
+    caption-side: top;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: #222222;
+    position: relative;
 }
 .detail-sp caption::after {
-  content: "";
-  position: absolute;
-  left: -1rem;
-  bottom: -6px;
-  width: 70%;
-  height: 2px;
-  background: #cecece;
+    content: "";
+    position: absolute;
+    left: -1rem;
+    bottom: -6px;
+    width: 70%;
+    height: 2px;
+    background: #8C1C28;
 }
-.detail-sp th ,.detail-sp td {
-  padding: 20px 10px;
-  vertical-align: middle;
-  color: #cecece;
+.detail-sp th,
+.detail-sp td {
+    padding: 20px 10px;
+    vertical-align: middle;
+    color: #222222;
 }
 .detail-sp th {
-  width: 140px;
+    width: 140px;
     padding-left: 50px;
     padding-right: 40px;
-  text-align: center;
-  font-weight: normal;
-  white-space: nowrap;
-  color: #cecece;
+    text-align: center;
+    font-weight: normal;
+    white-space: nowrap;
+    color: #222222;
 }
 .detail-sp td {
     text-align: left;
     padding-left: 0;
 }
 .detail-sp a {
-    color: #e3acae;
+    color: #8C1C28;
+    text-decoration: underline;
 }
 .detail-sp a:hover {
-    color: #ff0000;
+    color: #b52434;
 }
 
 /* ゼミ班共通 */
 .speace-sp {
-  margin: 1rem auto 0;
+    margin: 1rem auto 0;
 }
 .zemi-sp {
-  width: 90%;
-  max-width: 800px;
-  margin: 1rem auto;
-  border-collapse: collapse;
-  position: relative;
-  border-left: 2px solid #cecece;
-  border-bottom: 2px solid #cecece;
-  padding-left: 20px;
-  padding-bottom: 1rem;
+    width: 90%;
+    max-width: 800px;
+    margin: 1rem auto;
+    border-collapse: collapse;
+    position: relative;
+    border-left: 2px solid #8C1C28;
+    border-bottom: 2px solid #8C1C28;
+    padding-left: 20px;
+    padding-bottom: 1rem;
 }
 .zemi-title-sp {
-  max-width: 800px;
+    max-width: 800px;
     width: 90%;
-  caption-side: top;
-  text-align: left;
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 15px;
-  color: #cecece;
-  position: relative;
+    caption-side: top;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    color: #222222;
+    position: relative;
 }
 .zemi-title-sp::after {
-  content: "";
-  position: absolute;
-  left: -1rem;
-  bottom: -6px;
-  width: 70%;
-  height: 2px;
-  background: #cecece;
+    content: "";
+    position: absolute;
+    left: -1rem;
+    bottom: -6px;
+    width: 70%;
+    height: 2px;
+    background: #8C1C28;
 }
 
 /* ゼミ班一覧のグリッドレイアウト（PC版横2列） */
@@ -348,9 +395,9 @@ body.r6-sp {
 }
 @media (min-width: 1000px) {
     .zemi-grid-container {
-        grid-template-columns: 1fr 1fr; /* PC版のみ横2列 */
+        grid-template-columns: 1fr 1fr;
         gap: 20px;
-        align-items: start; /* 💡 隣のカードが伸びるのを防ぐ設定 */
+        align-items: start;
     }
 }
 
@@ -358,12 +405,12 @@ body.r6-sp {
 .zemi-details summary {
     cursor: pointer;
     outline: none;
-    list-style: none; /* デフォルトの黒い三角を消す */
+    list-style: none;
     position: relative;
-    padding-right: 2rem; /* ▼マークと文字が被らないように余白を作る */
+    padding-right: 2rem;
 }
 .zemi-details summary::-webkit-details-marker {
-    display: none; /* Safari用の三角消し */
+    display: none;
 }
 .toggle-icon {
     position: absolute;
@@ -373,24 +420,23 @@ body.r6-sp {
     display: inline-block;
     transition: transform 0.3s ease;
     font-size: 0.9rem;
-    color: #91b825;
+    color: #8C1C28;
 }
-/* 開いた時に▼を▲に回転させる */
 .zemi-details[open] summary .toggle-icon {
     transform: translateY(-50%) rotate(180deg);
 }
 
 /* EVENT */
 .event-sp {
-  width: 90%;
-  max-width: 800px;
-  margin: 1rem auto;
-  border-collapse: collapse;
-  position: relative;
-  border-left: 2px solid #cecece;
-  border-bottom: 2px solid #cecece;
-  padding-left: 20px;
-  padding-bottom: 1rem;
+    width: 90%;
+    max-width: 800px;
+    margin: 1rem auto;
+    border-collapse: collapse;
+    position: relative;
+    border-left: 2px solid #8C1C28;
+    border-bottom: 2px solid #8C1C28;
+    padding-left: 20px;
+    padding-bottom: 1rem;
 }
 .enent-sp img {
     width: 60%;
@@ -403,7 +449,7 @@ body.r6-sp {
     margin: 0.5rem;
 }
 .event-sp cite a {
-    color: #e3acae;
+    color: #8C1C28;
 }
 
 /* 上に戻るボタン */
@@ -429,7 +475,7 @@ body.r6-sp {
     transform: translateY(20%) rotate(-45deg);
 }
 
-/* 古い参加申し込みボタン（index.html等で使われている場合） */
+/* 古い参加申し込みボタン */
 .join {
     position: fixed;
     left: 5px;
@@ -446,19 +492,19 @@ body.r6-sp {
     font-size: 1rem;
 }
 
-/* 右下の追従申し込みボタン（r6_sp.htmlで使用） */
+/* 右下の追従申し込みボタン（r7_sp.htmlで使用） */
 .floating-apply-btn {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    background-color: #ff0000;
+    background-color: #8C1C28;
     color: #fff;
     padding: 12px 20px;
     border-radius: 50px;
     font-weight: bold;
     font-size: 0.95rem;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 4px 15px rgba(140, 28, 40, 0.4);
     z-index: 1000;
     transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
     text-align: center;
@@ -466,12 +512,11 @@ body.r6-sp {
 }
 .floating-apply-btn:hover {
     transform: scale(1.05);
-    background-color: #ff5252;
+    background-color: #6E151E;
     color: #fff;
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+    box-shadow: 0 6px 20px rgba(140, 28, 40, 0.6);
 }
 
-/* PC版（画面幅768px以上）の時に申し込みボタンを大きくする設定 */
 @media screen and (min-width: 768px) {
     .floating-apply-btn {
         bottom: 40px;
@@ -479,14 +524,13 @@ body.r6-sp {
         padding: 18px 40px;
         font-size: 1.3rem; 
         line-height: 1.5;
-        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5); 
+        box-shadow: 0 6px 20px rgba(140, 28, 40, 0.5); 
     }
 }
 
-
 /* 特設フッター */
 .page-footer-sp {
-    background-color: #e6e6e6; /* 白寄りの優しい灰色 */
+    background-color: #e6e6e6;
     color: #333333;
     margin-top: 2rem;
 }
@@ -494,11 +538,10 @@ body.r6-sp {
     color: #333333;
 }
 .page-footer-sp .info a:hover {
-    color: #91b825; /* リンクホバー時も優しい緑に統一 */
+    color: #8C1C28;
 }
-/* コピーライト部分 */
 .page-footer-sp .copyright {
-    background-color: #cccccc; /* 少しだけ濃い灰色にして区切りをつける */
+    background-color: #cccccc;
     color: #333333;
     text-align: center;
     padding: 2rem 0;
@@ -523,7 +566,7 @@ body.r6-sp {
     z-index: 9999;
 }
 .head {
-    display:  flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
 }
@@ -541,14 +584,12 @@ body.r6-sp {
     width: auto;
     vertical-align: middle;
 }
-
 .logo-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     line-height: 1.0; 
 }
-
 .logo-top {
     display: none; 
     font-size: 0.6rem;
@@ -562,33 +603,33 @@ body.r6-sp {
 
 /* Responsive menu button */
 .responsive_btn {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin: 0 1rem 0 1rem;
-  cursor: pointer;
-  z-index: 2000;
-  right: 1.5rem;
-  transition: 0.3s;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin: 0 1rem 0 1rem;
+    cursor: pointer;
+    z-index: 2000;
+    right: 1.5rem;
+    transition: 0.3s;
 }
 .menu_line {
-  background: black;
-  border-radius: 4px;
-  width: 100%;
-  height: 5px;
-  margin: 4px 0;
-  transition: 0.3s;
+    background: black;
+    border-radius: 4px;
+    width: 100%;
+    height: 5px;
+    margin: 4px 0;
+    transition: 0.3s;
 }
 .responsive_btn.active .menu_line:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
+    transform: translateY(9px) rotate(45deg);
 }
 .responsive_btn.active .menu_line:nth-child(2) {
-  opacity: 0;
+    opacity: 0;
 }
 .responsive_btn.active .menu_line:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Responsive style */
@@ -696,16 +737,16 @@ body.r6-sp {
 
 /* スライドショー */
 .your-class .slick-slide {
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 2rem;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
 }
 .your-class img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .slick-next {
     display: none !important;
@@ -739,24 +780,24 @@ body.r6-sp {
 
 /* 詳細 */
 .detail {
-  text-align: center;
-  max-width: 800px;
-  margin: 1rem auto;
-  padding: 1.5rem;
-  line-height: 1.8;
+    text-align: center;
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    line-height: 1.8;
 }
 .detail-title {
-  display: block;
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 0.8rem;
-  background-color: #bed778;
-  border-radius: 8px;   
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    background-color: #bed778;
+    border-radius: 8px;   
 }
 .detail-text {
-  display: block;
-  font-size: 1rem;
-  padding-top: 1rem;
+    display: block;
+    font-size: 1rem;
+    padding-top: 1rem;
 }
 .detail-text a {
     color: #2A91D3;
@@ -772,44 +813,43 @@ body.r6-sp {
     font-size: 5rem;
     text-align: center;
     -webkit-text-stroke: 1px black;
-    margin: 2rem auto ;
+    margin: 2rem auto;
     padding: 0 1rem 0 1rem;
     border: 2px solid black;
     color: white;
 }
 .r1 {
-    background :linear-gradient(rgba(0, 0, 0, .4),  rgba(0, 0, 0, .4)),url(../images/1st/1st_1.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(../images/1st/1st_1.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 .r2 {
-    background :linear-gradient(rgba(0, 0, 0, .4),  rgba(0, 0, 0, .4)),url(../images/2nd/2nd_1.png);
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(../images/2nd/2nd_1.png);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 .r3 {
-    background :linear-gradient(rgba(0, 0, 0, .4),  rgba(0, 0, 0, .4)),url(../images/3rd/3rd_1.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(../images/3rd/3rd_1.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 .r4 {
-    background :linear-gradient(rgba(0, 0, 0, .4),  rgba(0, 0, 0, .4)),url(../images/4th/4th_1.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(../images/4th/4th_1.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 .r5 {
-    background :linear-gradient(rgba(0, 0, 0, .4),  rgba(0, 0, 0, .4)),url(../images/5th/5th_4.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(../images/5th/5th_4.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
-
 .r6 {
-    background :linear-gradient(rgba(0, 0, 0, .4),  rgba(0, 0, 0, .4)),url(../images/6th/6th_7.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(../images/6th/6th_7.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -823,88 +863,88 @@ body.r6-sp {
 
 /* 各回のページ */
 .rizemi-detail {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 .detail-card {
-  background: #fafafa;
-  border-radius: 12px;
-  border: 2px solid #ddd;
-  padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    background: #fafafa;
+    border-radius: 12px;
+    border: 2px solid #ddd;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 .detail-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding: 1rem 0;
-  font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    font-size: 1.1rem;
 }
 .detail-item:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
 .label {
-  font-weight: bold;
-  color: #555;
+    font-weight: bold;
+    color: #555;
 }
 .value {
-  color: #000;
+    color: #000;
 }
 
 /* アコーディオン（通常） */
 .seminars {
-  margin: 3rem auto;
-  padding: 1rem;
+    margin: 3rem auto;
+    padding: 1rem;
 }
 .accordion {
-  max-width: 550px;
-  margin: 0 auto;
+    max-width: 550px;
+    margin: 0 auto;
 }
 .accordion-item {
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    background: #fff;
 }
 .accordion-header {
-  width: 100%;
-  background: #91b825;
-  color: #fff;
-  padding: 1rem 1.2rem;
-  font-size: 1.5rem;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    width: 100%;
+    background: #91b825;
+    color: #fff;
+    padding: 1rem 1.2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .accordion-icon {
-  font-size: 1.4rem;
-  transition: transform 0.3s ease;
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
 }
 .accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  background: #fafafa;
-  padding: 0 1.2rem;
-  transition: max-height 0.4s ease;
-  line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    background: #fafafa;
+    padding: 0 1.2rem;
+    transition: max-height 0.4s ease;
+    line-height: 1.7;
 }
 .accordion-item.active .accordion-content {
-  padding: 1rem 1.2rem;
+    padding: 1rem 1.2rem;
 }
 .accordion-item.active .accordion-icon {
-  transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 /* 通常フッター */
 .page-footer {
     background-color: #387536;
-    color:white;
+    color: white;
     margin-top: 2rem;
 }
 .foot-title {
@@ -1078,7 +1118,7 @@ body.r6-sp {
         font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", sans-serif;
     }
     
-    /* ヘッダー全体（通常＆特設）*/
+    /* ヘッダー全体（通常＆特設） */
     .page-header,
     .page-header-sp {
         display: flex;
@@ -1093,7 +1133,7 @@ body.r6-sp {
         border-bottom: 2px solid #c9c2bc;
     }
 
-    /* ロゴ周りのPCサイズ調整（通常・特設両方に強制適用！） */
+    /* ロゴ周りのPCサイズ調整 */
     .page-header .logo,
     .page-header-sp .logo {
         height: 2.5em;
@@ -1101,7 +1141,7 @@ body.r6-sp {
 
     .page-header .logo-text,
     .page-header-sp .logo-text {
-        line-height: 1.0; /* 全体の無駄な行間をリセット */
+        line-height: 1.0;
     }
 
     /* NEWSエリア（PC版） */
@@ -1140,7 +1180,7 @@ body.r6-sp {
         width: 650px;
     }
     
-    /* PC用ナビメニュー（通常と特設を全く同じデザインに完全統一！） */
+    /* PC用ナビメニュー */
     .main-nav,
     .main-nav-sp {
         position: static;
@@ -1148,9 +1188,9 @@ body.r6-sp {
         width: auto;
         background: none;
         display: flex;
-        justify-content: flex-end; /* メニューを右側に寄せる */
+        justify-content: flex-end;
         align-items: center;
-        gap: 3rem; /* メニュー同士の隙間 */
+        gap: 3rem;
         padding: 0;
         transition: none;
         color: #91B825;
@@ -1172,7 +1212,6 @@ body.r6-sp {
         display: inline;
     }
 }
-/* 💡PC用設定（バリア）閉じ */
 
 
 /* =========================================================
@@ -1185,7 +1224,7 @@ body.r6-sp {
     width: 100% !important;
 }
 
-/* 📱 スマホ版：ロゴと文字の間隔を狭く、ロゴの基本サイズ */
+/* スマホ版：ロゴと文字の間隔を狭く、ロゴの基本サイズ */
 .head-sp a, .head a {
     gap: 0.5rem !important; 
 }
@@ -1196,7 +1235,7 @@ body.r6-sp {
     font-size: 1.5rem !important; 
 }
 
-/* 💻 PC版のみ：中央寄せ、ロゴ拡大、文字拡大、サブタイトル再表示 */
+/* PC版のみ：中央寄せ、ロゴ拡大、文字拡大、サブタイトル再表示 */
 @media (min-width: 1000px) {
     .page-header, .page-header-sp {
         padding-left: 8vw !important;
@@ -1220,39 +1259,41 @@ body.r6-sp {
 
 
 /* =========================================================
-   特設ページ（ダークモード）専用の強制上書きデザイン
+   特設ページ（ライトモード・#8C1C28）専用の強制上書きデザイン
 ========================================================= */
 
 /* 特設ヘッダーの文字 */
 body.r6-sp .page-header-sp a,
 body.r6-sp .page-header-sp .logo-top,
 body.r6-sp .page-header-sp .logo-btm {
-    color: #bb011b !important; /* 白から赤へ */
+    color: #222222 !important;
 }
 
-/* 特設ページのロゴを光らせる（縁取り） */
+/* 特設ページのロゴの縁取り */
 body.r6-sp .page-header-sp .logo {
     border-radius: 50%;
-    box-shadow: 0 0 12px rgba(255, 0, 0, 0.7); 
-    background-color: #ffffff; /* ロゴの内側が透過している場合の対策 */
+    box-shadow: 0 2px 8px rgba(140, 28, 40, 0.25); 
+    background-color: #ffffff;
 }
 
 /* 三本線 */
 body.r6-sp .menu_line {
-    background: #bb011b !important; /* 💡ここも赤へ */
+    background: #8C1C28 !important;
 }
 
 /* INFO・ゼミ班・EVENTリンクのホバー色 */
-body.r6-sp .top-sp a:hover {
-    color: #91b825 !important;
+body.r6-sp .top-sp a:hover,
+body.r6-sp .top-sp .top-nav-item a:hover {
+    color: #8C1C28 !important;
 }
+
 
 /* =========================================================
    特設ページ トップ画像レイアウト
 ========================================================= */
 .hero-poster-single {
     text-align: center;
-    margin: 2rem auto 0; /* 下の余白をゼロにして、すぐタブが来るように設定 */
+    margin: 2rem auto 0;
 }
 .hero-poster-single img {
     width: 70%;
@@ -1262,49 +1303,50 @@ body.r6-sp .top-sp a:hover {
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* スマホ画面では70%だと小さすぎるため、90%に広げます */
 @media (max-width: 768px) {
     .hero-poster-single img {
         width: 90%;
     }
 }
 
+
 /* =========================================================
    ゼミ班の「扱う本の例」の画像レイアウト
 ========================================================= */
 .book-images {
     display: flex;
-    justify-content: center; /* 1冊なら中央、2冊なら中央寄りで横並び */
-    gap: 15px; /* 画像同士の隙間 */
+    justify-content: center;
+    gap: 15px;
     margin-top: 15px;
 }
 .book-images img {
-    width: 45%; /* 横に2つ並ぶように幅を制限 */
-    max-width: 140px; /* PCなどで大きくなりすぎないように最大幅を設定 */
+    width: 45%;
+    max-width: 140px;
     height: auto;
-    border-radius: 4px; /* 角を少し丸く */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* 本に少し影をつける */
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     object-fit: cover;
 }
 
+
 /* =========================================
-   希望調査フォームのスタイリング改善
+   希望調査フォームのスタイリング改善（ライトモード＆#8C1C28対応）
 ========================================= */
 
 /* フォーム全体の囲み枠とカード化 */
 .form-wrapper {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid #444;
+    background: #ffffff;
+    border: 1px solid #e0d5d5;
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
 }
 
 /* 各質問セクションの区切り */
 .form-section {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid #333;
-    border-left: 4px solid #ff0000; /* 見出し横にアクセントカラー */
+    background: #FCF6F6;
+    border: 1px solid #e6dada;
+    border-left: 4px solid #8C1C28;
     border-radius: 8px;
     padding: 1.2rem;
     margin-bottom: 2rem;
@@ -1312,11 +1354,11 @@ body.r6-sp .top-sp a:hover {
 
 /* 質問タイトルのデザイン */
 .form-section h3 {
-    color: #fff;
+    color: #222222;
     font-size: 1.2rem;
     margin-top: 0;
     margin-bottom: 0.8rem;
-    border-bottom: 1px dashed #555;
+    border-bottom: 1px dashed #d4caca;
     padding-bottom: 0.5rem;
 }
 
@@ -1325,9 +1367,9 @@ body.r6-sp .top-sp a:hover {
 .form-section select,
 .form-section textarea {
     width: 100%;
-    background-color: #1a1a1d;
-    color: #fff;
-    border: 1px solid #555;
+    background-color: #ffffff;
+    color: #222222;
+    border: 1px solid #cccccc;
     border-radius: 6px;
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
@@ -1341,23 +1383,23 @@ body.r6-sp .top-sp a:hover {
 .form-section input[type="text"]:focus,
 .form-section select:focus,
 .form-section textarea:focus {
-    border-color: #ff0000;
+    border-color: #8C1C28;
     outline: none;
-    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+    box-shadow: 0 0 6px rgba(140, 28, 40, 0.25);
 }
 
 /* ラベルテキストの視認性向上 */
 .form-section label {
-    color: #e4e4e7;
+    color: #222222;
     font-size: 0.95rem;
     line-height: 1.5;
 }
 
 /* 分野選択ボタン（アコーディオン内）の見た目 */
 .field-btn {
-    background: #2a2a2e;
-    color: #fff;
-    border: 1px solid #555;
+    background: #ffffff;
+    color: #222222;
+    border: 1px solid #cccccc;
     padding: 8px 14px;
     margin: 4px;
     border-radius: 20px;
@@ -1367,16 +1409,16 @@ body.r6-sp .top-sp a:hover {
 }
 
 .field-btn:hover {
-    background: #ff0000;
-    color: #000;
-    border-color: #ff0000;
+    background: #8C1C28;
+    color: #ffffff;
+    border-color: #8C1C28;
 }
 
 /* ジャンル選択ボタンの基本スタイル */
 .field-btn.genre-btn {
-    background: #2a2a2e;
-    color: #fff;
-    border: 1px solid #555;
+    background: #ffffff;
+    color: #222222;
+    border: 1px solid #cccccc;
     padding: 8px 16px;
     margin: 4px;
     border-radius: 20px;
@@ -1386,109 +1428,103 @@ body.r6-sp .top-sp a:hover {
     transition: all 0.2s ease;
 }
 
-/* 💡 選択されたジャンルボタン（目立たせるデザイン） */
+/* 選択されたジャンルボタン（目立たせるデザイン） */
 .field-btn.genre-btn.active {
-    background: #ff0000
-       !important; /* 鮮やかなネオンイエロー */
-    color: #000000 !important;      /* 文字を濃い黒にして視認性を高める */
-    border-color: #ff0000 !important;
+    background: #8C1C28 !important;
+    color: #ffffff !important;
+    border-color: #8C1C28 !important;
     font-weight: bold;
-    box-shadow: 0 0 12px rgba(255, 0, 0, 0.7); /* 発光風の影で選択状態を強調 */
-    transform: scale(1.05); /* 少し拡大させて選択感を演出 */
+    box-shadow: 0 2px 8px rgba(140, 28, 40, 0.35);
+    transform: scale(1.05);
 }
 
 /* ホバー時の挙動（未選択時） */
 .field-btn.genre-btn:hover:not(.active) {
-    background: #ff0000;
-    color: #000;
-    border-color: #ff0000;
+    background: #8C1C28;
+    color: #ffffff;
+    border-color: #8C1C28;
 }
 
 /* 選択状況確認ボックス */
 .status-box {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px dashed #ff0000;
+    background: #ffffff;
+    border: 1px dashed #8C1C28;
     border-radius: 8px;
     padding: 1rem;
     margin-top: 1.5rem;
-    color: #fff;
+    color: #222222;
 }
 
 .status-box span {
-    color: #ff0000; /* 選択内容を強調 */
+    color: #8C1C28;
     font-weight: bold;
 }
 
 /* =========================================
-   「希望調査フォームを開く」ボタンの強調設定（アニメーションなし）
+   「希望調査フォームを開く」ボタンの強調設定
 ========================================= */
-
 .submit-btn {
     display: block;
     width: 85%;
     max-width: 420px;
     margin: 1.5rem auto 0;
     padding: 1.2rem 2rem;
-    
-    /* 💡 ダークモード背景に映える鮮やかなグラデーションゴールド */
-    background: #ff0000;
-    color: #000000; /* 黒文字でクッキリ読めるように調整 */
-    
+    background: #8C1C28;
+    color: #ffffff;
     font-size: 1.25rem;
     font-weight: bold;
     letter-spacing: 1px;
     text-align: center;
-    
     border: none;
-    border-radius: 50px; /* カプセル型で押しやすい形状に */
-    
-    /* 💡 クッキリ浮かび上がる発光風の影 */
-    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.6);
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(140, 28, 40, 0.3);
     cursor: pointer;
+    transition: background-color 0.2s;
 }
-   /* 💡「選び直す」ボタンの基本色設定 */
+.submit-btn:hover {
+    background: #6E151E;
+}
+
+/* 「選び直す」ボタンの基本色設定 */
 .clear-btn {
-    background-color: #44444c; /* ボタンの背景色（暗めのグレー） */
-    color: #e4e4e7;            /* 文字色（明るいグレー） */
-    border: 1px solid #666;    /* 枠線 */
-    border-radius: 4px;        /* 少し角を丸く */
-    padding: 2px 8px;          /* 内側の余白 */
-    font-size: 0.8rem;         /* 文字サイズ */
-    margin-left: 8px;          /* 希望名とのすき間 */
+    background-color: #f0e6e6;
+    color: #333333;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    margin-left: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-/* 💡 マウスを乗せたとき（またはタップ時）に赤く変更 */
 .clear-btn:hover {
-    background-color: #ff4d4d; /* 目立つ赤色 */
-    color: #ffffff;            /* 文字を白に */
-    border-color: #ff4d4d;
+    background-color: #8C1C28;
+    color: #ffffff;
+    border-color: #8C1C28;
 }
 
-/* 💡 [質問2] ジャンル（アコーディオン）全体の見易さ改善 */
+/* [質問2] ジャンル（アコーディオン）全体の見易さ改善 */
 .form-section details {
-    background: rgba(255, 255, 255, 0.05); /* うっすら背景をつける */
-    border: 1px solid #55555d;              /* しっかりした囲み枠 */
-    border-radius: 8px;                     /* 角丸 */
-    margin-bottom: 12px;                    /* 各ジャンル同士のすき間 */
+    background: #ffffff;
+    border: 1px solid #d4caca;
+    border-radius: 8px;
+    margin-bottom: 12px;
     overflow: hidden;
     transition: border-color 0.3s;
 }
 
-/* 開いている状態の枠線を強調 */
 .form-section details[open] {
-    border-color: #ff0000;                   /* テーマカラーのゴールド枠に */
-    background: rgba(255, 255, 255, 0.08);
+    border-color: #8C1C28;
+    background: #ffffff;
 }
 
-/* ジャンル名（物理学、数学など）の見出しボタン */
 .form-section details summary {
     cursor: pointer;
-    font-size: 1.1rem;                     /* 文字サイズを少し大きく */
+    font-size: 1.1rem;
     font-weight: bold;
-    color: #ffffff;
-    padding: 12px 16px;                     /* タップしやすいように押し幅を広げる */
+    color: #222222;
+    padding: 12px 16px;
     outline: none;
     user-select: none;
     display: flex;
@@ -1496,118 +1532,37 @@ body.r6-sp .top-sp a:hover {
     align-items: center;
 }
 
-/* ホバー時に背景を少し明るく */
 .form-section details summary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #FCF6F6;
 }
 
-/* アコーディオンの中身（ボタンが並ぶエリア）の余白調整 */
 .form-section details div[id^="area-"] {
     padding: 10px 14px 16px 14px;
-    border-top: 1px dashed #444;             /* 見出しと中身の区切り線 */
+    border-top: 1px dashed #d4caca;
 }
 
-/* 💡「自分が提案した分野を選ぶ」エリア全体の枠囲みとカード化 */
+/* 「自分が提案した分野を選ぶ」エリア全体の枠囲みとカード化 */
 .my-proposal-box {
-    background: rgba(255, 255, 255, 0.04);  /* うっすらと明るい背景 */
-    border: 1px solid #55555d;               /* クッキリとした枠線 */
-    border-left: 4px solid #ff0000;          /* アクセントカラー（アクセント枠） */
-    border-radius: 8px;                      /* 角丸 */
-    padding: 1rem 1.2rem;                    /* 内側の余白 */
-    margin-bottom: 1.5rem;                   /* 下のジャンル枠とのすき間 */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);/* 軽い影で浮かび上がらせる */
+    background: #ffffff;
+    border: 1px solid #d4caca;
+    border-left: 4px solid #8C1C28;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-/* 「自分が提案した分野を選ぶ」の見出し（ラベル） */
 .my-proposal-box .box-label {
     display: block;
     font-size: 1.05rem;
     font-weight: bold;
-    color: #ffffff;                          /* くっきり読める白文字 */
+    color: #222222;
     margin-bottom: 0.4rem;
 }
 
-/* 💡「質問1に入力した分野名が自動で〜」の説明文の見易さ改善 */
 .my-proposal-box p {
-    font-size: 0.85rem !important;          /* 読みやすい文字サイズに拡大 */
-    color: #cecece !important;              /* 暗いグレーから明るいグレーへ変更して可視性アップ */
-    line-height: 1.6 !important;            /* 行間を広げて読みやすく */
-    margin: 0.4rem 0 1rem 0 !important;
-}
-
-/* 「質問1を入力」ボタン（提案ボタン）の基本・非活性表示 */
-.my-proposal-box .proposal-btn {
-    margin-top: 0.3rem;
-}
-
-/* ボタンが無効（未入力）状態のときの見やすさ調整 */
-.my-proposal-box .proposal-btn:disabled {
-    background: #333338;
-    color: #888888;
-    border-color: #55555d;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-/* ファイルの一番最後（.my-proposal-box .proposal-btn:disabled の下）に追加 */
-
-/* ナビゲーション用の吹き出しスタイル（強調版） */
-.top-nav-item {
-    position: relative;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 既存の区切り線（::after）の位置調整 */
-.top-sp .top-nav-item::after {
-    content: "";
-    position: absolute;
-    top: 15%;
-    right: 0;
-    width: 1px;
-    height: 70%;
-    background: #fff;
-    opacity: 0.4;
-}
-
-.balloon-speech-small {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    background: #ff0000;
-    color: #000000;
-    font-weight: bold;
-    font-size: 0.82rem;
-    padding: 4px 10px;
-    border-radius: 14px;
-    white-space: nowrap;
-    
-    /* 💡 過剰な影を削除し、背景に溶け込まない最小限のフラット影のみ適用 */
-    box-shadow: none;
-    z-index: 10;
-    
-    animation: bounce-strong 1.8s infinite;
-}
-
-/* 吹き出しの下三角（しっぽ） */
-.balloon-speech-small::after {
-    content: "";
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-style: solid;
-    border-width: 6px 5px 0 5px; /* しっぽも一まわり大きく */
-    border-color: #ff0000 transparent transparent transparent;
-}
-
-/* 💡 上下の揺れ幅を少し大きくしたアニメーション */
-@keyframes bounce-strong {
-    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-    40% { transform: translateX(-50%) translateY(-7px); }
-    60% { transform: translateX(-50%) translateY(-3px); }
+    font-size: 0.85rem !important;
+    color: #555555 !important;
+    line-height: 1.6 !important;
+    margin: 0.4rem 0 1rem !important;
 }
