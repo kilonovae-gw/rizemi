@@ -61,33 +61,37 @@ img {
 }
 
 /* =========================================
-   特設ページへの誘導（index.htmlで使用）
+   特設ページへの誘導（index.html等で使用）
 ========================================= */
 .floating-banner {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  background: #ff6b6b;
+  background: #ff0000; /* テーマカラーの赤に変更 */
   color: #fff;
   text-decoration: none;
-  padding: 14px 18px;
+  padding: 14px 20px;
   border-radius: 999px;
   font-weight: bold;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.35); /* 赤に合わせた影 */
   z-index: 1000;
+  transition: background-color 0.2s, transform 0.2s;
 }
 .floating-banner:hover {
-  background: #ff3b3b;
+  background: #cc0000; /* ホバー時は少し濃い赤に */
+  transform: scale(1.05);
 }
+
 .special-banner-bg {
   display: block;
-  width:90%;
+  width: 90%;
   max-width: 1000px;
   height: 220px;
   margin: 40px auto 0;
   background-image: url("../images/5th/5th_4.jpg"); 
   background-size: cover;
   background-position: center;
+  border: 2px solid #ff0000; /* テーマカラーの赤枠を追加 */
   border-radius: 20px;
   text-decoration: none;
   position: relative;
@@ -97,6 +101,7 @@ img {
 }
 .special-banner-bg:hover {
   transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(255, 0, 0, 0.35);
 }
 .banner-overlay {
   position: absolute;
@@ -118,6 +123,7 @@ img {
   font-weight: bold;
   margin-top: 10px;
 }
+
 
 /* =========================================
    特設ページ（共通・スマホベース）
