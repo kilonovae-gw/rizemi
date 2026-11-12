@@ -124,7 +124,7 @@ img {
 ========================================= */
 
 /* 本体ダークモード */
-body.r7-sp {
+body.r6-sp {
     background-color: #121214; 
     color: #e4e4e7;            
 }
@@ -440,7 +440,7 @@ body.r7-sp {
     font-size: 1rem;
 }
 
-/* 右下の追従申し込みボタン（r7_sp.htmlで使用） */
+/* 右下の追従申し込みボタン（r6_sp.htmlで使用） */
 .floating-apply-btn {
     position: fixed;
     bottom: 25px;
@@ -1218,26 +1218,26 @@ body.r7-sp {
 ========================================================= */
 
 /* 特設ヘッダーの文字 */
-body.r7-sp .page-header-sp a,
-body.r7-sp .page-header-sp .logo-top,
-body.r7-sp .page-header-sp .logo-btm {
+body.r6-sp .page-header-sp a,
+body.r6-sp .page-header-sp .logo-top,
+body.r6-sp .page-header-sp .logo-btm {
     color: #ff0000 !important; /* 白から赤へ */
 }
 
 /* 特設ページのロゴを光らせる（縁取り） */
-body.r7-sp .page-header-sp .logo {
+body.r6-sp .page-header-sp .logo {
     border-radius: 50%;
     box-shadow: 0 0 12px rgba(255, 0, 0, 0.7); 
     background-color: #ffffff; /* ロゴの内側が透過している場合の対策 */
 }
 
 /* 三本線 */
-body.r7-sp .menu_line {
+body.r6-sp .menu_line {
     background: #ff0000 !important; /* 💡ここも赤へ */
 }
 
 /* INFO・ゼミ班・EVENTリンクのホバー色 */
-body.r7-sp .top-sp a:hover {
+body.r6-sp .top-sp a:hover {
     color: #91b825 !important;
 }
 
