@@ -84,7 +84,7 @@
           <div><img src="./images/6th/6th_2.jpg"></div> 
         </div>
 
-    <div class="top-sp">
+ <!--   <div class="top-sp">
         <a href="#detail-sp">INFO</a>
         <div class="top-nav-item">
             <span class="balloon-speech-small">分野希望調査中!</span>
@@ -92,7 +92,8 @@
         </div>
         <a href="#event-sp">EVENT</a>
     </div>
-    
+
+-->
     <table class="detail-sp" id="detail-sp">
         <caption>INFORMATION</caption>
         <tbody>
@@ -126,18 +127,32 @@
     
         <section class="zemi-sp">
             <div style="padding: 1rem 0; text-align: center;">
+            <!--希望調査中はこちらを使用
                 <p style="font-size: 1rem; line-height: 2; color: #222222; margin-bottom: 0.5rem;">
                     りゼミ7thは、現在希望分野を募集中です！<br>これまでに提案された分野はこちらです。<br>
                     <span style="font-size: 0.9em;">(自動集計中)</span>
                 </p>
+            -->
+        <!-- 締め切り後はこちらを使用 -->  
+           <p style="font-size: 1rem; line-height: 2; color: #cecece; margin-bottom: 0.5rem;"> 
+               希望分野の募集を締め切りました！<br> 
+               たくさんのご回答ありがとうございました。<br> 
+               本募集開始までしばらくお待ちください。 
+           </p>  
+
+                
                 <p style="font-size: 0.85rem; line-height: 1.6; color: #555555; margin-top: 0; margin-bottom: 1rem;">
                     ※第1希望の人数が多い順に表示しています。<br>
                     ※原則4名以上でゼミ班成立ですが，班が多すぎる場合などは希望者の多い班が優先されます。
                 </p>
             </div>
 
+
+
             <div id="zemi-results-container"></div>
 
+
+        <!--
             <div style="background: rgba(140, 28, 40, 0.06); border: 1px dashed #8C1C28; padding: 15px; border-radius: 8px; margin-top: 20px; margin-bottom: 25px;">
                 <p style="margin: 0; font-size: 0.95rem; color: #222222; line-height: 1.6;">
                     希望調査フォームの送信によって参加が決定するものではございません。<br>また、合宿に参加せずオンラインでゼミに参加することもできますので、少しでも興味のある方は気軽にお答えください！
@@ -279,7 +294,9 @@
             </div>
         </section>
     </div>
+-->
 
+            
 <!--    <div id="zemi-sp">
         <div class="zemi-title-wrap" style="position: relative; max-width: 800px; width: 90%; margin: 0 auto;">
             <h2 class="zemi-title-sp" style="width: 100%; margin: 0;">ゼミ班</h2>
@@ -543,7 +560,8 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="slick/slick.min.js"></script>
-    
+
+<!--希望調査用スクリプト
     <script>
         $(document).ready(function(){
             $('.your-class').slick({
@@ -582,5 +600,6 @@
             document.getElementById("input-genre").value = selectedGenres.join(", ");
         }
     </script>
+            -->
 </body>
 </html>
